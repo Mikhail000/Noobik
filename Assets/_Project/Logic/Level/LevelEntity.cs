@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -16,18 +17,29 @@ public class LevelEntity : MonoBehaviour
 
     private Player _player;
 
+    private IMessageReceiver _receiver;
+    private CompositeDisposable _disposable;
+    private IDisposable _stopDisposable;
+
     [Inject]
-    private void Construct(Player player)
+    private void Construct(Player player, IMessageReceiver receiver)
     {
         _player = player;
+        _receiver = receiver;
+        _disposable = new();
     }
     
     private void Start()
     {
-        foreach (var checkpoint in Checkpoints)
-        {
-            checkpoint.SetTrackOfCheckpoints(this);
-        }
+        SetCheckpoints();
+
+        _lastCheckpoint = StartPoint;  
+
+
+        //Debug.Log(_receiver);
+        //Debug.Log(_disposable);
+        _receiver.Receive<DieMessage>().Subscribe(ResetLevel).AddTo(_disposable);
+
     }
 
     public void PassedThroughCheckpoint(Checkpoint checkpoint)
@@ -35,7 +47,7 @@ public class LevelEntity : MonoBehaviour
         if (Checkpoints.IndexOf(checkpoint) == _nextCheckpointIndex)
         {
             _nextCheckpointIndex++;
-            checkpoint.GetTranform();
+            _lastCheckpoint = checkpoint.GetTranform();
         }
         else
         {
@@ -45,6 +57,12 @@ public class LevelEntity : MonoBehaviour
 
     private void SetCheckpoints() => Checkpoints.ForEach(checkpoint => checkpoint.SetTrackOfCheckpoints(this));
     
-    
+
+    private void ResetLevel(DieMessage dieMessage)
+    {
+        Debug.Log("DIE");
+        _player.SetPosition(_lastCheckpoint.position);
+        _stopDisposable?.Dispose();
+    }
 
 }

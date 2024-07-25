@@ -46,7 +46,6 @@ public class InputReader : InputLayout.IPlayerActions
         if (context.phase == InputActionPhase.Performed)
         {
             _publisher.Publish(new JumpMessage());
-            Debug.Log("PRESSED");
         }
     }
     

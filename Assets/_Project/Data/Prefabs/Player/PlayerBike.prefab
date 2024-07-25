@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2296569612337644651}
-  - component: {fileID: 4100457488943615140}
+  - component: {fileID: 5223722673328809296}
   m_Layer: 0
   m_Name: rear_Collider
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2228448917572363150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4100457488943615140
+--- !u!135 &5223722673328809296
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 4414654865398706682}
   - component: {fileID: 4519587860091630523}
   - component: {fileID: 2214934675363426454}
-  - component: {fileID: 7319157990941956168}
+  - component: {fileID: 4031500017570487665}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -139,14 +139,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7319157990941956168
+--- !u!65 &4031500017570487665
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503938622962043275}
-  m_Material: {fileID: 13400000, guid: dbc3036e73b0954408a4ad472a0678f1, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -158,8 +158,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.15, z: 0.25}
-  m_Center: {x: 0.00096936146, y: -0.02, z: 0.034}
+  m_Size: {x: 0.02, y: 0.1, z: 0.2}
+  m_Center: {x: 0, y: -0.045, z: 0}
 --- !u!1 &1993105295685231215
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 325140070819244395}
-  - component: {fileID: 3165085492014431412}
+  - component: {fileID: 970471287489180709}
   m_Layer: 0
   m_Name: front_Collider
   m_TagString: Untagged
@@ -185,14 +185,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993105295685231215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.5, z: -5.73}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.4999988, z: -5.7299995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5340363747677291867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &3165085492014431412
+--- !u!135 &970471287489180709
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 1345686471418470052}
   - component: {fileID: 1867037727867026891}
   - component: {fileID: 1380730327193300309}
+  - component: {fileID: 6777533099986092732}
   m_Layer: 0
   m_Name: front_Transform
   m_TagString: Untagged
@@ -332,6 +333,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &6777533099986092732
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935172610301104492}
+  m_Material: {fileID: 13400000, guid: dbc3036e73b0954408a4ad472a0678f1, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.050085604
+  m_Center: {x: -0.0000000023283064, y: 0.00008665584, z: 0.00003518164}
 --- !u!1 &4328509227641548434
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +365,7 @@ GameObject:
   - component: {fileID: 9140991306973778479}
   - component: {fileID: 1195963147873067290}
   - component: {fileID: 2704666685993454833}
+  - component: {fileID: 218292190980552139}
   m_Layer: 0
   m_Name: read_Wheel
   m_TagString: Untagged
@@ -417,6 +440,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &218292190980552139
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328509227641548434}
+  m_Material: {fileID: 13400000, guid: dbc3036e73b0954408a4ad472a0678f1, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.05008558
+  m_Center: {x: -0.0000000023283064, y: 0.00011966191, z: 0.000026950613}
 --- !u!1 &5644353448035781470
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +541,7 @@ GameObject:
   - component: {fileID: 4515678688205196864}
   m_Layer: 0
   m_Name: PlayerBike
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,11 +589,11 @@ MonoBehaviour:
   rigidbody: {fileID: 4515678688205196864}
   surfaceSlider: {fileID: 4761943445625032083}
   tiltPivot: {fileID: 5993462625923236760}
-  speed: 5
+  speed: 7
   turnSpeed: 5
   tiltAngle: 30
   tiltSpeed: 5
-  jumpForce: 100
+  jumpForce: 70
 --- !u!114 &4761943445625032083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +614,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6535724693175765041}
   serializedVersion: 4
-  m_Mass: 25
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0.84}

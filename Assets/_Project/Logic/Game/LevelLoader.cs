@@ -15,10 +15,12 @@ public class LevelLoader : MonoBehaviour
     private Transform _startPoint;
     private Transform _finishPoint;
     private Player _player;
+    private DiContainer _container;
 
     [Inject]
-    private void Construct(PreloaderLevelService levelService, LevelStorage storage, Player player)
+    private void Construct(PreloaderLevelService levelService, LevelStorage storage, Player player, DiContainer container)
     {
+        _container = container;
         _levelPreloader = levelService;
         _storage = storage;
 
@@ -29,11 +31,10 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
-        
-        
         var levelCfg = _storage.LevelConfig[_levelNumb];
-        
-        _currentLevelPrefab = Instantiate(levelCfg.levelPrefab);
+
+        _currentLevelPrefab = _container.InstantiatePrefab(levelCfg.levelPrefab);
+        //_currentLevelPrefab = Instantiate(levelCfg.levelPrefab);
         Vector3 p = _currentLevelPrefab.GetComponent<LevelEntity>().StartPoint.position;
         _player.SetPosition(p);
         

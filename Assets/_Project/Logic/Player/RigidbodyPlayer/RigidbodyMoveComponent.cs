@@ -43,6 +43,8 @@ public class RigidbodyMoveComponent : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(_receiver);
+        Debug.Log(_disposable);
         _receiver.Receive<MoveMessage>().Subscribe(GetDirectionEvent).AddTo(_disposable);
         _receiver.Receive<JumpMessage>().Subscribe(GetJumpEvent).AddTo(_disposable);
         _receiver.Receive<StopMessage>().Subscribe(GetStopEvent).AddTo(_disposable);

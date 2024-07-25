@@ -26,7 +26,7 @@ public class MoveInput : MonoBehaviour
     private Vector3 _targetMoveDirection;
 
     private float _rayOffset = .5f;
-    private float _rayLength = .7f;
+    private float _rayLength = .9f;
 
     private IMessageReceiver _receiver;
     private CompositeDisposable _disposable;
@@ -41,6 +41,9 @@ public class MoveInput : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(_receiver);
+        Debug.Log(_disposable);
+
         _receiver.Receive<MoveMessage>().Subscribe(GetDirectionEvent).AddTo(_disposable);
         _receiver.Receive<JumpMessage>().Subscribe(GetJumpEvent).AddTo(_disposable);
         _receiver.Receive<StopMessage>().Subscribe(GetStopEvent).AddTo(_disposable);
@@ -53,13 +56,13 @@ public class MoveInput : MonoBehaviour
         _isGrounded = Physics.Raycast(transform.position + Vector3.up * _rayOffset, Vector3.down, _rayLength,
             LayerMask.GetMask("Default"));
         Debug.DrawRay(transform.position + Vector3.up * _rayOffset, Vector3.down * _rayLength, Color.blue);
-        Debug.Log($"IsGrounded: {_isGrounded}");
+        //Debug.Log($"IsGrounded: {_isGrounded}");
 
 
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
-        if (_currentMoveDirection != Vector3.zero)
+        if (_currentMoveDirection != Vector3.zero && _isGrounded)
         {
             Turn();
             Tilt();

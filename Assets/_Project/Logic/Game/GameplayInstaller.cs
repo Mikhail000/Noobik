@@ -36,6 +36,7 @@ public class GameplayInstaller : MonoInstaller
 
         if (SystemInfo.deviceType == DeviceType.Desktop)
         {
+            //Container.InstantiatePrefab(mobileCanvasForInput);
             // ...
         }
     }
