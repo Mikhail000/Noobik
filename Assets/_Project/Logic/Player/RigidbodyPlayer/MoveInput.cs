@@ -10,6 +10,7 @@ public class MoveInput : MonoBehaviour
 
     [SerializeField] private SurfaceSlider surfaceSlider;
     [SerializeField] private Transform tiltPivot;
+    [SerializeField] private AnimationCurve jumpCurve; // Анимационная кривая для прыжка
 
     [Header("Parameters")] [Space(5)] [SerializeField]
     private float speed;
@@ -18,6 +19,7 @@ public class MoveInput : MonoBehaviour
     [SerializeField] private float tiltAngle; //30f; // максимальный угол наклона
     [SerializeField] private float tiltSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpDuration = 1.0f;
 
 
     private Vector3 _offset;
@@ -53,6 +55,9 @@ public class MoveInput : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Debug.Log(_targetMoveDirection);
+        Debug.Log(_currentMoveDirection);
+
         _isGrounded = Physics.Raycast(transform.position + Vector3.up * _rayOffset, Vector3.down, _rayLength,
             LayerMask.GetMask("Default"));
         Debug.DrawRay(transform.position + Vector3.up * _rayOffset, Vector3.down * _rayLength, Color.blue);
@@ -62,7 +67,7 @@ public class MoveInput : MonoBehaviour
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
-        if (_currentMoveDirection != Vector3.zero && _isGrounded)
+        if (_currentMoveDirection != Vector3.zero)
         {
             Turn();
             Tilt();
@@ -97,11 +102,36 @@ public class MoveInput : MonoBehaviour
 
     private void Tilt()
     {
-        float targetTiltAngle = -_currentMoveDirection.x * tiltAngle;
+        // Добавляем проверку на направление движения
+        if (Mathf.Abs(_targetMoveDirection.x) > 0 && Mathf.Abs(_targetMoveDirection.z) == 0)
+        {
+            return; // Не выполняем наклон, если движение только влево или вправо
+        }
+
+        float targetTiltAngle;
+
+        // Если мы движемся назад, инвертируем направление для расчета наклона
+        if (_targetMoveDirection.z < 0)
+        {
+            targetTiltAngle = _currentMoveDirection.x * tiltAngle;
+        }
+        else
+        {
+            targetTiltAngle = -_currentMoveDirection.x * tiltAngle;
+        }
+
+        // Расчитываем желаемое вращение наклона
         Quaternion targetTiltRotation = Quaternion.Euler(tiltPivot.localRotation.eulerAngles.x,
             tiltPivot.localRotation.eulerAngles.y, targetTiltAngle);
-        tiltPivot.localRotation =
-            Quaternion.Slerp(tiltPivot.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
+
+        // Плавно перемещаем наклон к целевому значению
+        tiltPivot.localRotation = Quaternion.Slerp(tiltPivot.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
+
+        //float targetTiltAngle = -_currentMoveDirection.x * tiltAngle;
+        //Quaternion targetTiltRotation = Quaternion.Euler(tiltPivot.localRotation.eulerAngles.x,
+        //    tiltPivot.localRotation.eulerAngles.y, targetTiltAngle);
+        //tiltPivot.localRotation =
+        //    Quaternion.Slerp(tiltPivot.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
     }
 
     private void ResetTilt()
