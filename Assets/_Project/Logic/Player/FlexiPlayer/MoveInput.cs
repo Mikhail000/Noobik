@@ -146,6 +146,7 @@ public class MoveInput : MonoBehaviour
         float elapsedTime = Time.time - _jumpStartTime;
         if (elapsedTime < jumpDuration)
         {
+            // Применение горизонтальной силы для поддержания движения
             Vector3 horizontalMovement = _currentMoveDirection * speed * Time.fixedDeltaTime;
             rigidbody.MovePosition(rigidbody.position + horizontalMovement);
         }
