@@ -30,8 +30,6 @@ public class InputReader : InputLayout.IPlayerActions
             var inputVector = context.ReadValue<Vector2>();
             var delta = new Vector3(inputVector.x, 0, inputVector.y);
             _publisher.Publish(new MoveMessage(delta));
-            
-            //Debug.Log($"Moving: {inputVector}");
         }
         
 

@@ -28,6 +28,9 @@ public class MoveInput : MonoBehaviour
     [SerializeField] private float jumpHeight = 2.0f; // Высота прыжка
     [SerializeField] private float jumpDuration = 1.0f;
 
+    [SerializeField] private PhysicsJump physicsJump;
+
+
     private Vector3 _offset;
     private bool _isGrounded;
     private Vector3 _currentMoveDirection;
@@ -74,22 +77,16 @@ public class MoveInput : MonoBehaviour
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
-        Turn();
-        Tilt();
 
-        if (_isJumping)
+        if (_currentMoveDirection != Vector3.zero)
         {
-            PerformJump();
+            Turn();
+            Tilt();
+            Move(_currentMoveDirection);
         }
-        else
-        {
-            _currentMoveDirection = Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
-            if (_currentMoveDirection != Vector3.zero && _isGrounded)
-            {
-                Move(_currentMoveDirection);
-            }
-        }
+        Debug.Log(_targetMoveDirection);
+
     }
 
     public void Move(Vector3 direction)
@@ -97,7 +94,6 @@ public class MoveInput : MonoBehaviour
         Vector3 directionAlongSurface = surfaceSlider.Project(direction);
         _offset = directionAlongSurface * (speed * Time.fixedDeltaTime);
         rigidbody.MovePosition(rigidbody.position + _offset);
-        Debug.Log("MOOOOVIN");
     }
 
     private void Turn()
@@ -184,9 +180,11 @@ public class MoveInput : MonoBehaviour
     {
         if (_isGrounded && !_isJumping)
         {
-            _isJumping = true;
-            _jumpStartTime = Time.time;
-            rigidbody.AddForce(Vector3.up * Mathf.Sqrt(2 * Physics.gravity.magnitude * jumpHeight), ForceMode.VelocityChange);
+            physicsJump.Jump(_currentMoveDirection);
+
+            //_isJumping = true;
+            //_jumpStartTime = Time.time;
+            //rigidbody.AddForce(Vector3.up * Mathf.Sqrt(2 * Physics.gravity.magnitude * jumpHeight), ForceMode.VelocityChange);
         }
     }
 }
