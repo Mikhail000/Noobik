@@ -7,6 +7,7 @@ public class PhysicsJump : MonoBehaviour
     [SerializeField] private JumpFX _fx;
     [SerializeField] private float _lengh;
     [SerializeField] private float _duration;
+    [SerializeField] private float _jumpForce;
 
     private PureAnimation _playTime;
 
@@ -23,7 +24,12 @@ public class PhysicsJump : MonoBehaviour
 
         _playTime.Play(_duration, (progress) =>
         {
-            transform.position = Vector3.Lerp(startPosition, target, progress) + fxPlaytime.LastChanges.Position;
+
+            Vector3 currentVelocity = _rigidbody.velocity;
+            float jumpVelocity = Mathf.Sqrt(2 * Physics.gravity.magnitude * _jumpForce * (1 - progress));
+            _rigidbody.velocity = new Vector3(currentVelocity.x, jumpVelocity, currentVelocity.z);
+
+            //transform.position = Vector3.Lerp(startPosition, target, progress) + fxPlaytime.LastChanges.Position;
             //transform.localScale = fxPlaytime.LastChanges.Scale;
             return null;
         });

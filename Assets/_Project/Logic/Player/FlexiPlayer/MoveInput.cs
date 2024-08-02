@@ -63,16 +63,13 @@ public class MoveInput : MonoBehaviour
         _receiver.Receive<JumpMessage>().Subscribe(GetJumpEvent).AddTo(_disposable);
         _receiver.Receive<StopMessage>().Subscribe(GetStopEvent).AddTo(_disposable);
 
-        rigidbody.centerOfMass = new Vector3(0, 0.5f, 0);
+        rigidbody.centerOfMass = new Vector3(0, .1f, -.3f);
     }
 
     private void FixedUpdate()
     {
 
-        _isGrounded = Physics.Raycast(transform.position + Vector3.up * _rayOffset, Vector3.down, _rayLength,
-            LayerMask.GetMask("Default"));
-        Debug.DrawRay(transform.position + Vector3.up * _rayOffset, Vector3.down * _rayLength, Color.blue);
-
+        CheckForGround();
 
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
@@ -84,16 +81,23 @@ public class MoveInput : MonoBehaviour
             Tilt();
             Move(_currentMoveDirection);
         }
-
-        Debug.Log(_targetMoveDirection);
-
     }
+
 
     public void Move(Vector3 direction)
     {
         Vector3 directionAlongSurface = surfaceSlider.Project(direction);
         _offset = directionAlongSurface * (speed * Time.fixedDeltaTime);
         rigidbody.MovePosition(rigidbody.position + _offset);
+    }
+
+    private void CheckForGround()
+    {
+        _isGrounded = Physics.Raycast(transform.position + Vector3.up * _rayOffset, Vector3.down, _rayLength,
+            LayerMask.GetMask("Default"));
+        Debug.DrawRay(transform.position + Vector3.up * _rayOffset, Vector3.down * _rayLength, Color.blue);
+
+        _isJumping = false;
     }
 
     private void Turn()
@@ -137,21 +141,6 @@ public class MoveInput : MonoBehaviour
             Quaternion.Slerp(tiltPivot.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
     }
 
-    private void PerformJump()
-    {
-        float elapsedTime = Time.time - _jumpStartTime;
-        if (elapsedTime < jumpDuration)
-        {
-            // Применение горизонтальной силы для поддержания движения
-            Vector3 horizontalMovement = _currentMoveDirection * speed * Time.fixedDeltaTime;
-            rigidbody.MovePosition(rigidbody.position + horizontalMovement);
-        }
-        else
-        {
-            _isJumping = false;
-        }
-    }
-
     private void GetDirectionEvent(MoveMessage moveMessage)
     {
         _targetMoveDirection = new Vector3(moveMessage.Delta.x, moveMessage.Delta.y, moveMessage.Delta.z);
@@ -178,13 +167,36 @@ public class MoveInput : MonoBehaviour
 
     private void GetJumpEvent(JumpMessage jumpMessage)
     {
+        Debug.Log("JUMP");
+
         if (_isGrounded && !_isJumping)
         {
-            physicsJump.Jump(_currentMoveDirection);
+            Vector3 vec = new Vector3(1, 1, 1); // Направление прыжка
+            physicsJump.Jump(vec);
+
+            //physicsJump.Jump(_currentMoveDirection);
 
             //_isJumping = true;
             //_jumpStartTime = Time.time;
             //rigidbody.AddForce(Vector3.up * Mathf.Sqrt(2 * Physics.gravity.magnitude * jumpHeight), ForceMode.VelocityChange);
         }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (rigidbody == null)
+        {
+            rigidbody = GetComponent<Rigidbody>();
+        }
+
+        // Установите цвет для Gizmos
+        Gizmos.color = Color.red;
+
+        // Нарисуйте сферу в центре массы Rigidbody
+        Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.1f);
+
+        // Нарисуйте линию от позиции объекта до центра массы
+        Gizmos.DrawLine(transform.position, rigidbody.worldCenterOfMass);
     }
 }
