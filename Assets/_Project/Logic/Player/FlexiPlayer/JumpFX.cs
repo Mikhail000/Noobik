@@ -19,7 +19,7 @@ public class JumpFX : MonoBehaviour
     {
         _playTime.Play(duration, (float progress)=>
             {
-                Vector3 position = Vector3.Scale(new Vector3(0, _height * _yAnimation.Evaluate(progress), 0), jumper.up);
+                Vector3 position = new Vector3(0, _height * _yAnimation.Evaluate(progress), 0);
                 Vector3 scale = Vector3.one * _scaleAnimation.Evaluate(progress);
 
                 return new TransformChanges(position);

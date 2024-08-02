@@ -613,32 +613,6 @@ MonoBehaviour:
   tiltAngle: 30
   tiltSpeed: 5
   jumpForce: 70
-  jumpCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  jumpHeight: 2
-  jumpDuration: 0.5
   physicsJump: {fileID: 385202835856099128}
 --- !u!114 &4761943445625032083
 MonoBehaviour:
@@ -669,21 +643,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 3.7829936
-      outSlope: 3.7829936
-      tangentMode: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.11470951
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.9938507
-      value: -0.010767013
-      inSlope: -4.2462378
-      outSlope: -4.2462378
-      tangentMode: 0
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.19119503
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -712,7 +686,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 3
+  _height: 1
   _playTime: {fileID: 0}
 --- !u!114 &385202835856099128
 MonoBehaviour:
@@ -729,9 +703,9 @@ MonoBehaviour:
   _rigidbody: {fileID: 4515678688205196864}
   _surfaceSlider: {fileID: 4761943445625032083}
   _fx: {fileID: 4855625964163120663}
-  _lengh: 5
-  _duration: 1
-  _jumpForce: 2
+  _length: 0.5
+  _duration: 0.7
+  _jumpForce: 30
 --- !u!114 &5558411709419191784
 MonoBehaviour:
   m_ObjectHideFlags: 0

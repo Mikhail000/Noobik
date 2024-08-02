@@ -5,11 +5,9 @@ using UnityEngine;
 public class TransformChanges : MonoBehaviour
 {
     public Vector3 Position { get; }
-    //public Vector3 Scale { get; }
 
-    public TransformChanges(Vector3 position /*Vector3 scale*/) 
+    public TransformChanges(Vector3 position) 
     {
         Position = position;
-        //Scale = scale;
     }
 }

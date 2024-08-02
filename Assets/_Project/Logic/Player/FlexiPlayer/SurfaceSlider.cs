@@ -13,7 +13,6 @@ public class SurfaceSlider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            Debug.Log("Hit New Normal");
             _normal = collision.contacts[0].normal;
         }
     }

@@ -16,17 +16,10 @@ public class MoveInput : MonoBehaviour
     [Space(5)]
 
     [SerializeField] private float speed;
-    [SerializeField] private float turnSpeed; //500
-    [SerializeField] private float tiltAngle; //30f
+    [SerializeField] private float turnSpeed;
+    [SerializeField] private float tiltAngle; 
     [SerializeField] private float tiltSpeed;
     [SerializeField] private float jumpForce;
-    //[SerializeField] private float jumpDuration = 1.0f;
-
-    [Header("Jump Parameters")]
-    [Space(5)]
-    [SerializeField] private AnimationCurve jumpCurve; // Анимационная кривая для прыжка
-    [SerializeField] private float jumpHeight = 2.0f; // Высота прыжка
-    [SerializeField] private float jumpDuration = 1.0f;
 
     [SerializeField] private PhysicsJump physicsJump;
 
@@ -79,7 +72,10 @@ public class MoveInput : MonoBehaviour
         {
             Turn();
             Tilt();
-            Move(_currentMoveDirection);
+            if (_currentMoveDirection != Vector3.zero && _isGrounded)
+            {
+                Move(_currentMoveDirection);
+            }
         }
     }
 
@@ -167,18 +163,10 @@ public class MoveInput : MonoBehaviour
 
     private void GetJumpEvent(JumpMessage jumpMessage)
     {
-        Debug.Log("JUMP");
-
         if (_isGrounded && !_isJumping)
         {
-            Vector3 vec = new Vector3(1, 1, 1); // Направление прыжка
-            physicsJump.Jump(vec);
-
-            //physicsJump.Jump(_currentMoveDirection);
-
-            //_isJumping = true;
-            //_jumpStartTime = Time.time;
-            //rigidbody.AddForce(Vector3.up * Mathf.Sqrt(2 * Physics.gravity.magnitude * jumpHeight), ForceMode.VelocityChange);
+            Vector3 vec = new Vector3(0, 1, 0); // Направление прыжка
+            physicsJump.Jump(_currentMoveDirection);
         }
     }
 
