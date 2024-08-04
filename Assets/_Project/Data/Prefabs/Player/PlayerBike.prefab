@@ -643,21 +643,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      value: 0
+      inSlope: 2.8742888
+      outSlope: 2.8742888
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: 0.99379444
+      value: 2.8564522
+      inSlope: 2.8742888
+      outSlope: 2.8742888
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -704,8 +704,8 @@ MonoBehaviour:
   _surfaceSlider: {fileID: 4761943445625032083}
   _fx: {fileID: 4855625964163120663}
   _length: 0.5
-  _duration: 0.7
-  _jumpForce: 30
+  _duration: 0.05
+  _jumpForce: 2
 --- !u!114 &5558411709419191784
 MonoBehaviour:
   m_ObjectHideFlags: 0

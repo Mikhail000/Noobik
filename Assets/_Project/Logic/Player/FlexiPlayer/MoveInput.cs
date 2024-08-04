@@ -17,7 +17,7 @@ public class MoveInput : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private float turnSpeed;
-    [SerializeField] private float tiltAngle; 
+    [SerializeField] private float tiltAngle;
     [SerializeField] private float tiltSpeed;
     [SerializeField] private float jumpForce;
 
@@ -77,6 +77,16 @@ public class MoveInput : MonoBehaviour
                 Move(_currentMoveDirection);
             }
         }
+
+        if (!_isGrounded)
+        {
+            LockRotationX();
+        }
+        else
+        {
+            UnlockRotationX();
+        }
+
     }
 
 
@@ -93,7 +103,10 @@ public class MoveInput : MonoBehaviour
             LayerMask.GetMask("Default"));
         Debug.DrawRay(transform.position + Vector3.up * _rayOffset, Vector3.down * _rayLength, Color.blue);
 
-        _isJumping = false;
+        if (_isGrounded)
+        {
+            _isJumping = false;
+        }
     }
 
     private void Turn()
@@ -167,9 +180,19 @@ public class MoveInput : MonoBehaviour
         {
             Vector3 vec = new Vector3(0, 1, 0); // Направление прыжка
             physicsJump.Jump(_currentMoveDirection);
+            _isJumping = true;
         }
     }
 
+    private void LockRotationX()
+    {
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
+
+    private void UnlockRotationX()
+    {
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
+    }
 
     private void OnDrawGizmos()
     {
