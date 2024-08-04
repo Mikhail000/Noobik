@@ -15,15 +15,15 @@ public class MoveInput : MonoBehaviour
     [Header("Movement Parameters")]
     [Space(5)]
 
-    [SerializeField] private float speed;
+    [SerializeField] private float onGroundSpeed;
+    [SerializeField] private float onAirSpeed;
     [SerializeField] private float turnSpeed;
     [SerializeField] private float tiltAngle;
     [SerializeField] private float tiltSpeed;
     [SerializeField] private float jumpForce;
-
     [SerializeField] private PhysicsJump physicsJump;
 
-
+    private float speed;
     private Vector3 _offset;
     private bool _isGrounded;
     private Vector3 _currentMoveDirection;
@@ -81,9 +81,11 @@ public class MoveInput : MonoBehaviour
         if (!_isGrounded)
         {
             LockRotationX();
+            speed = onAirSpeed;
         }
         else
         {
+            speed = onGroundSpeed;
             UnlockRotationX();
         }
 

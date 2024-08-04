@@ -609,6 +609,7 @@ MonoBehaviour:
   surfaceSlider: {fileID: 4761943445625032083}
   tiltPivot: {fileID: 5993462625923236760}
   speed: 7
+  onAirSpeed: 2.5
   turnSpeed: 5
   tiltAngle: 30
   tiltSpeed: 5
