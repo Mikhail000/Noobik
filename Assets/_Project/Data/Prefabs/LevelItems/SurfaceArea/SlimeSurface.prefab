@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 353273237201370186}
   - component: {fileID: 8782089463621547750}
   - component: {fileID: 3697937020574513136}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SlimeSurface
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -59,28 +59,28 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.75506884
+      outSlope: 0.75506884
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.080449484
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 1.5336441
+      outSlope: 1.5336441
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.04229927
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  height: 1
-  length: 0.5
-  duration: 0.05
-  jumpForce: 2
+  height: 5
+  length: 5
+  duration: 0.5
+  jumpForce: 10
 --- !u!65 &3697937020574513136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,6 +110,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -154,6 +158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimeBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -172,6 +180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -216,6 +228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimeBlock (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -234,6 +250,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -278,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimeBlock (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -296,6 +320,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -340,6 +368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimeBlock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -358,6 +390,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -402,6 +438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimeBlock (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -420,6 +460,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -464,6 +508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimeBlock (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -482,6 +530,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -526,6 +578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slimeBlock (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -544,6 +600,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 353273237201370186}
     m_Modifications:
+    - target: {fileID: 3326093693545468475, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4782916186216978683, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -587,6 +647,10 @@ PrefabInstance:
     - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
       propertyPath: m_Name
       value: slimeBlock (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988720956511989220, guid: 6f1f81507f920f34cb35c316a952b173, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

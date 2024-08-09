@@ -1,3 +1,4 @@
+using Cinemachine;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -6,12 +7,14 @@ public class GameplayInstaller : MonoInstaller
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject mobileCanvasForInput;
+    [SerializeField] private GameObject camera;
     
     public override void InstallBindings()
     {
         BindMessageBroker();
         BindInput();
         BindPlayer();
+        BindCamera();
     }
 
 
@@ -45,5 +48,11 @@ public class GameplayInstaller : MonoInstaller
     {
         Player player = Container.InstantiatePrefabForComponent<Player>(playerPrefab);
         Container.Bind<Player>().FromInstance(player).AsSingle().NonLazy();
+    }
+
+    private void BindCamera()
+    {
+        CameraFollow cinema = Container.InstantiatePrefabForComponent<CameraFollow>(camera);
+        Container.Bind<CameraFollow>().FromInstance(cinema).AsSingle().NonLazy();    
     }
 }

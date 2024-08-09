@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -18,31 +19,28 @@ public class Checkpoint : MonoBehaviour
     {
         meshRenderer.material.color = _red;
     }
-    
 
 
-    
     public Transform GetTranform()
     {
         return this.transform;
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if (isPassed)
-        {
-        if (other.TryGetComponent<Player>(out Player player))
-        {
-            _level.PassedThroughCheckpoint(this);
-            meshRenderer.material.color = _green;
-            Debug.Log("PRIVET");        
-        }
 
-        }
-    }
+        if (!isPassed)
+        {
+            if (other.TryGetComponent<Player>(out Player p))
+            {
+                _level.PassedThroughCheckpoint(this);
+                isPassed = true;
+                meshRenderer.material.color = _green;
+                Debug.Log("WALK THROUGH");
+                SceneManager.LoadScene("Gameplay");
 
-    private void ChangeColor()
-    {
-        
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ public class LevelEntity : MonoBehaviour
 {
     [field:SerializeField] public Transform StartPoint { get; private set; }
     [field:SerializeField] public Transform FinishPoint { get; private set; }
+    [field:SerializeField] public Transform CameraPoint { get; private set; }
     [field:SerializeField] public List<Checkpoint> Checkpoints { get; private set; }
     
     [field:SerializeField] public bool isPassed { get; private set; }

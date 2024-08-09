@@ -42,7 +42,7 @@ public class BouncySurface : MonoBehaviour
             yield return null;
         }
 
-        rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange); // Apply force at the end
+        //srigidbody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange); // Apply force at the end
     }
 
 }

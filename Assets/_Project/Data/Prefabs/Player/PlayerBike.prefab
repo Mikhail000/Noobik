@@ -531,6 +531,8 @@ GameObject:
   - component: {fileID: 385202835856099128}
   - component: {fileID: 5558411709419191784}
   - component: {fileID: 5583647250732295947}
+  - component: {fileID: 4544167783738890631}
+  - component: {fileID: 7605875324577949860}
   m_Layer: 6
   m_Name: PlayerBike
   m_TagString: Player
@@ -607,13 +609,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 4515678688205196864}
   surfaceSlider: {fileID: 4761943445625032083}
+  groundDetection: {fileID: 4544167783738890631}
   tiltPivot: {fileID: 5993462625923236760}
-  speed: 7
-  onAirSpeed: 2.5
+  onGroundSpeed: 7
+  onAirSpeed: 3
   turnSpeed: 5
   tiltAngle: 30
   tiltSpeed: 5
-  jumpForce: 70
   physicsJump: {fileID: 385202835856099128}
 --- !u!114 &4761943445625032083
 MonoBehaviour:
@@ -704,7 +706,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 4515678688205196864}
   _surfaceSlider: {fileID: 4761943445625032083}
   _fx: {fileID: 4855625964163120663}
-  _length: 0.5
+  _length: 0.35
   _duration: 0.05
   _jumpForce: 2
 --- !u!114 &5558411709419191784
@@ -731,6 +733,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f500c24b12addba40b22bf6ed42c2a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4544167783738890631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535724693175765041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94d2afd4cc4eea4ab35790287795434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &7605875324577949860
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535724693175765041}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &9223312546071984461
 GameObject:
   m_ObjectHideFlags: 0

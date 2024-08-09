@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using YG;
 
 public class PreloaderLevelService
@@ -19,6 +20,13 @@ public class PreloaderLevelService
     public void LoadSaveCloud()
     {
         Levels = YandexGame.savesData.openLevels;
+    }
+
+
+    public void LoadNextLevel()
+    {
+        _currentLevelNumb++;
+        SceneManager.LoadScene("Gameplay");
     }
 }
 

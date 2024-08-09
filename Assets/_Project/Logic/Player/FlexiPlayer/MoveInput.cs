@@ -10,6 +10,7 @@ public class MoveInput : MonoBehaviour
 
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private SurfaceSlider surfaceSlider;
+    [SerializeField] private GroundDetection groundDetection;
     [SerializeField] private Transform tiltPivot;
 
     [Header("Movement Parameters")]
@@ -20,7 +21,6 @@ public class MoveInput : MonoBehaviour
     [SerializeField] private float turnSpeed;
     [SerializeField] private float tiltAngle;
     [SerializeField] private float tiltSpeed;
-    [SerializeField] private float jumpForce;
     [SerializeField] private PhysicsJump physicsJump;
 
     private float speed;
@@ -33,6 +33,8 @@ public class MoveInput : MonoBehaviour
     private float _jumpStartTime;
     private Vector3 _jumpStartPosition;
 
+    private Vector3 _localDown;
+    private Vector3 _rayOrigin;
     private float _rayOffset = .5f;
     private float _rayLength = .9f;
 
@@ -62,31 +64,18 @@ public class MoveInput : MonoBehaviour
     private void FixedUpdate()
     {
 
-        CheckForGround();
+        //CheckForGround();
 
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
+        Balancing();
 
         if (_currentMoveDirection != Vector3.zero)
         {
             Turn();
             Tilt();
-            if (_currentMoveDirection != Vector3.zero && _isGrounded)
-            {
-                Move(_currentMoveDirection);
-            }
-        }
-
-        if (!_isGrounded)
-        {
-            LockRotationX();
-            speed = onAirSpeed;
-        }
-        else
-        {
-            speed = onGroundSpeed;
-            UnlockRotationX();
+            Move(_currentMoveDirection);
         }
 
     }
@@ -101,9 +90,10 @@ public class MoveInput : MonoBehaviour
 
     private void CheckForGround()
     {
-        _isGrounded = Physics.Raycast(transform.position + Vector3.up * _rayOffset, Vector3.down, _rayLength,
-            LayerMask.GetMask("Default"));
-        Debug.DrawRay(transform.position + Vector3.up * _rayOffset, Vector3.down * _rayLength, Color.blue);
+        _localDown = transform.TransformDirection(Vector3.down);
+        _rayOrigin = transform.position + transform.TransformDirection(Vector3.up) * _rayOffset;
+        _isGrounded = Physics.Raycast(_rayOrigin, _localDown, _rayLength, LayerMask.GetMask("Default"));
+        Debug.DrawRay(_rayOrigin, _localDown * _rayLength, Color.blue);
 
         if (_isGrounded)
         {
@@ -178,7 +168,7 @@ public class MoveInput : MonoBehaviour
 
     private void GetJumpEvent(JumpMessage jumpMessage)
     {
-        if (_isGrounded && !_isJumping)
+        if (groundDetection.IsGrounded)
         {
             Vector3 vec = new Vector3(0, 1, 0); // Направление прыжка
             physicsJump.Jump(_currentMoveDirection);
@@ -186,8 +176,24 @@ public class MoveInput : MonoBehaviour
         }
     }
 
+    private void Balancing()
+    {
+        if (groundDetection.IsGrounded)
+        {
+            UnlockRotationX();
+            speed = onGroundSpeed;
+        }
+        else 
+        {
+            LockRotationX();
+            speed = onAirSpeed;
+        }
+
+    }
+
     private void LockRotationX()
     {
+
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 

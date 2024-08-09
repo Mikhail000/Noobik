@@ -6,9 +6,9 @@ using UnityEngine;
 public class Finish : MonoBehaviour
 {
    
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.TryGetComponent<Player>(out Player p))
         {
             Debug.Log("REACHED FINISH");
         }
