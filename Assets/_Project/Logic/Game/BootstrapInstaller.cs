@@ -7,14 +7,15 @@ public class BootstrapInstaller : MonoInstaller
     [SerializeField] private GameObject yandexGamePrefab;
     public override void InstallBindings()
     {
-        BindLevelStorage();
+        BindGameManagers();
         BindYandexGame();
         
     }
 
-    private void BindLevelStorage()
+    private void BindGameManagers()
     {
         Container.Bind<PreloaderLevelService>().AsSingle().NonLazy();
+
     }
 
     private void BindYandexGame()

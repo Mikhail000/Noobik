@@ -24,6 +24,13 @@ public class PhysicsJump : MonoBehaviour
         //Vector3 startPosition = transform.position;
         //PureAnimation fxPlaytime = _fx.PlayAnimations(transform, _duration);
 
+        if (_rigidbody == null)
+        {
+            Debug.LogWarning("Rigidbody is missing or destroyed!");
+            return;
+        }
+
+
         Vector3 startVelocity = _rigidbody.velocity;
         Vector3 targetVelocity = direction * _length / _duration;
         targetVelocity.y = _jumpForce;  // Устанавливаем силу прыжка по оси Y

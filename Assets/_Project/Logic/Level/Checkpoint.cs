@@ -3,21 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private ParticleSystem particles;
     private bool isPassed;
-    private Color _red = new Color(1.0f, 0f, 0.0f, 0.5f);
-    private Color _green = new Color(0.0f, 1f, 0.0f, 0.5f);
     private LevelEntity _level;
 
     public void SetTrackOfCheckpoints(LevelEntity level)
     {
         this._level = level;
 
+        particles.Pause();
     }
 
     public void ResetCheckpoint()
     {
-        meshRenderer.material.color = _red;
+        particles.Stop();
     }
 
 
@@ -36,9 +35,8 @@ public class Checkpoint : MonoBehaviour
             {
                 _level.PassedThroughCheckpoint(this);
                 isPassed = true;
-                meshRenderer.material.color = _green;
+                particles.Play();
                 Debug.Log("WALK THROUGH");
-                SceneManager.LoadScene("Gameplay");
 
             }
         }

@@ -22,11 +22,14 @@ public class PreloaderLevelService
         Levels = YandexGame.savesData.openLevels;
     }
 
-
-    public void LoadNextLevel()
+    public void SaveAndLoadNextLevel()
     {
+        YandexGame.savesData.openLevels[_currentLevelNumb] = true;
+
         _currentLevelNumb++;
+
         SceneManager.LoadScene("Gameplay");
     }
+
 }
 

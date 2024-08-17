@@ -11,6 +11,7 @@ public class MoveInput : MonoBehaviour
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private SurfaceSlider surfaceSlider;
     [SerializeField] private GroundDetection groundDetection;
+    [SerializeField] private BicycleAnimator _bikeAnimator;
     [SerializeField] private Transform tiltPivot;
 
     [Header("Movement Parameters")]
@@ -64,8 +65,6 @@ public class MoveInput : MonoBehaviour
     private void FixedUpdate()
     {
 
-        //CheckForGround();
-
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
@@ -76,6 +75,8 @@ public class MoveInput : MonoBehaviour
             Turn();
             Tilt();
             Move(_currentMoveDirection);
+            // тут вызываем метод у компонента-вращателя колес
+            _bikeAnimator.RotateWheels(_currentMoveDirection.magnitude);
         }
 
     }
