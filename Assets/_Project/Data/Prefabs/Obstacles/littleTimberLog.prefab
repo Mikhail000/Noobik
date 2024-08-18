@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5399866983087678972}
   - component: {fileID: 4000602653440584474}
   m_Layer: 0
-  m_Name: timberLog
+  m_Name: littleTimberLog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

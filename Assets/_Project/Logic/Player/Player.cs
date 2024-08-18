@@ -16,14 +16,10 @@ public class Player : MonoBehaviour
         _disposable = new();
     }
 
-    private void Start()
-    {
-        
-    }
 
     private void FixedUpdate()
     {
-        if (transform.position.y < -10) _publisher.Publish(new DieMessage());
+        if (transform.position.y < -10) Die();
     }
 
     public void SetPosition(Vector3 pos)
@@ -31,6 +27,38 @@ public class Player : MonoBehaviour
         this.transform.position = pos;
         this.transform.rotation = Quaternion.identity;
     }
+
+    public void Die()
+    {
+        _publisher.Publish(new DieMessage());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Deadly")
+        {
+            _publisher.Publish(new DieMessage());
+            Debug.Log("GET DEAD");
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("GET DEAD");
+
+        if (other.tag == "Deadly")
+        {
+            _publisher.Publish(new DieMessage());
+            Debug.Log("GET DEAD");
+        }
+
+        if (other.CompareTag("Deadly"))
+        {
+            _publisher.Publish(new DieMessage());
+            Debug.Log("GET DEAD");
+        }
+    }
+
 }
 
 
