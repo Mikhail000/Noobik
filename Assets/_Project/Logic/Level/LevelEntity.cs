@@ -16,6 +16,7 @@ public class LevelEntity : MonoBehaviour
 
     private int _nextCheckpointIndex = default;
     private Transform _lastPassedCheckpoint;
+    private Vector3 _offsetSpawn = new Vector3(0f, 0.2f, 0f);
 
     private Player _player;
 
