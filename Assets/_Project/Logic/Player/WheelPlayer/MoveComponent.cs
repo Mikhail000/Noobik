@@ -12,7 +12,7 @@ public class MoveComponent : MonoBehaviour
     [Header("Components")]
     [Space(5)]
     [SerializeField] private Rigidbody rigidbody;
-    [SerializeField] private GroundDetection groundDetection;
+    [SerializeField] private WheelGroundChecker groundDetecter;
     [SerializeField] private PhysicsJump physicsJump;
     [SerializeField] private WheelCollider frontWheel;
     [SerializeField] private WheelCollider rearWheel;
@@ -65,6 +65,7 @@ public class MoveComponent : MonoBehaviour
         _receiver.Receive<MoveMessage>().Subscribe(GetDirectionEvent).AddTo(_disposable);
         _receiver.Receive<JumpMessage>().Subscribe(GetJumpEvent).AddTo(_disposable);
         _receiver.Receive<StopMessage>().Subscribe(GetStopEvent).AddTo(_disposable);
+        _receiver.Receive<DieMessage>().Subscribe(GetDieEvent).AddTo(_disposable);
 
         rigidbody.centerOfMass = new Vector3(0f, 0f, -0.3f);
         Debug.Log(rigidbody.centerOfMass);
@@ -79,7 +80,7 @@ public class MoveComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(groundDetection.IsGrounded);
+        //Debug.Log(groundDetection.IsGrounded);
 
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
@@ -113,7 +114,7 @@ public class MoveComponent : MonoBehaviour
 
     private void GetJumpEvent(JumpMessage jumpMessage)
     {
-        if (groundDetection.IsGrounded)
+        if (groundDetecter.IsGrounded)
             physicsJump.Jump(_currentMoveDirection);
     }
 
@@ -127,6 +128,10 @@ public class MoveComponent : MonoBehaviour
 
     }
 
+    private void GetDieEvent(DieMessage dieMessage) 
+    {
+        ApplyBrakes();
+    }
 
     private void Move()
     {
@@ -204,7 +209,7 @@ public class MoveComponent : MonoBehaviour
 
     private void AdjustBalanceOnAir()
     {
-        if (groundDetection.IsGrounded)
+        if (groundDetecter.IsGrounded)
         {
             UnlockRotationX();      
         }
@@ -243,13 +248,4 @@ public class MoveComponent : MonoBehaviour
         Gizmos.DrawLine(transform.position, rigidbody.worldCenterOfMass);
     }
 
-    //private bool CheckGrounded()
-    //{
-    //    _localDown = transform.TransformDirection(Vector3.down);
-    //    _rayOrigin = transform.position + transform.TransformDirection(Vector3.up) * _rayOffset;
-    //    _isGrounded = Physics.Raycast(_rayOrigin, _localDown, _rayLength, LayerMask.GetMask("Default"));
-    //    Debug.DrawRay(_rayOrigin, _localDown * _rayLength, Color.blue);
-    //
-    //    return _isGrounded;
-    //}
 }

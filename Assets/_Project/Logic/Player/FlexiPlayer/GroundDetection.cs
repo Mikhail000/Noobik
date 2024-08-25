@@ -18,6 +18,8 @@ public class GroundDetection : MonoBehaviour
     private void FixedUpdate()
     {
         _isGrounded = Summary();
+
+        Debug.Log(_isTriggered);
     }
 
 
@@ -53,6 +55,7 @@ public class GroundDetection : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground")
         {
+            //Debug.Log("Enter");
             _isTriggered = true;
         }
     }
@@ -61,6 +64,7 @@ public class GroundDetection : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground")
         {
+            //Debug.Log("Stay");
             _isTriggered = true;
         }
     }
@@ -69,6 +73,7 @@ public class GroundDetection : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground")
         {
+            //Debug.Log("Exit");
             _isTriggered = false;
         }
     }
