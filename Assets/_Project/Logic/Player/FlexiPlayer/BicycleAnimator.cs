@@ -3,7 +3,7 @@ using UnityEngine;
 public class BicycleAnimator : MonoBehaviour
 {
     [SerializeField] private Transform[] wheels; // Массив колес, которые будут вращаться
-    [SerializeField] private float rotationSpeedMultiplier = 1.0f; // Множитель скорости вращения
+    [SerializeField] private float rotationSpeedMultiplier = -1.0f; // Множитель скорости вращения
 
     public void RotateWheels(float bikeSpeed)
     {

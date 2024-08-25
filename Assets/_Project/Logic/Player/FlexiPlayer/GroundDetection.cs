@@ -3,25 +3,76 @@ using UnityEngine;
 
 public class GroundDetection : MonoBehaviour
 {
-    private bool _isGrounded;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Vector3 boxSize;
+    [SerializeField] private float maxDistance;
+    [SerializeField] private Vector3 offset;
 
+    private bool _isGrounded;
+    private bool _isHitted;
+    private bool _isTriggered;
     public bool IsGrounded => _isGrounded;
 
-    private void OnCollisionStay(Collision collision)
+
+
+    private void FixedUpdate()
     {
-        // ѕровер€ем, соприкасаетс€ ли велосипед с землей (слой "Ground")
-        if (collision.gameObject.tag == "Ground")
+        _isGrounded = Summary();
+    }
+
+
+    private bool Summary()
+    {
+        return _isHitted || _isTriggered;
+    }
+
+    private void GroundCheck()
+    {
+
+        Vector3 boxCenter = transform.position + offset + transform.up * (boxSize.y / 2);
+
+        _isHitted = Physics.BoxCast(boxCenter, boxSize, -transform.up, transform.rotation, 
+            maxDistance, LayerMask.GetMask("Ground"));
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 boxCenter = transform.position + offset - Vector3.up * (boxSize.y / 2);
+
+        Gizmos.color = _isGrounded ? Color.green : Color.red;
+
+        Gizmos.DrawRay(boxCenter, -transform.up * maxDistance);
+
+        Gizmos.DrawWireCube(boxCenter - transform.up * maxDistance, boxSize);
+    }
+
+    #region TriggerWork
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ground")
         {
-            _isGrounded = true;
+            _isTriggered = true;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        // ≈сли велосипед перестает соприкасатьс€ с землей
-        if (collision.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground")
         {
-            _isGrounded = false;
+            _isTriggered = true;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            _isTriggered = false;
+        }
+    }
+
+    #endregion
+
 }

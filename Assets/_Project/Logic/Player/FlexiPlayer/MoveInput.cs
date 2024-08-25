@@ -36,8 +36,8 @@ public class MoveInput : MonoBehaviour
 
     private Vector3 _localDown;
     private Vector3 _rayOrigin;
-    private float _rayOffset = .5f;
-    private float _rayLength = .9f;
+    private float _rayOffset = 2.5f;
+    private float _rayLength = 2.9f;
 
     private IMessageReceiver _receiver;
     private CompositeDisposable _disposable;
@@ -59,7 +59,8 @@ public class MoveInput : MonoBehaviour
         _receiver.Receive<JumpMessage>().Subscribe(GetJumpEvent).AddTo(_disposable);
         _receiver.Receive<StopMessage>().Subscribe(GetStopEvent).AddTo(_disposable);
 
-        rigidbody.centerOfMass = new Vector3(0, .1f, -.3f);
+        rigidbody.centerOfMass = new Vector3(0f, .1f, -.3f);
+
     }
 
     private void FixedUpdate()
@@ -68,7 +69,7 @@ public class MoveInput : MonoBehaviour
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
-        Balancing();
+        AdjustBalanceOnAir();
 
         if (_currentMoveDirection != Vector3.zero)
         {
@@ -77,6 +78,10 @@ public class MoveInput : MonoBehaviour
             Move(_currentMoveDirection);
             // тут вызываем метод у компонента-вращателя колес
             _bikeAnimator.RotateWheels(_currentMoveDirection.magnitude);
+        }
+        else
+        {
+            ResetTilt();
         }
 
     }
@@ -98,6 +103,7 @@ public class MoveInput : MonoBehaviour
 
         if (_isGrounded)
         {
+            Debug.Log(_isGrounded);
             _isJumping = false;
         }
     }
@@ -137,10 +143,15 @@ public class MoveInput : MonoBehaviour
 
     private void ResetTilt()
     {
-        Quaternion targetTiltRotation = Quaternion.Euler(tiltPivot.localRotation.eulerAngles.x,
-            tiltPivot.localRotation.eulerAngles.y, 0f);
-        tiltPivot.localRotation =
-            Quaternion.Slerp(tiltPivot.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
+        //Quaternion targetTiltRotation = Quaternion.Euler(tiltPivot.localRotation.eulerAngles.x,
+        //    tiltPivot.localRotation.eulerAngles.y, 0f);
+        //tiltPivot.localRotation =
+        //    Quaternion.Slerp(tiltPivot.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
+
+        Quaternion targetTiltRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x,
+            transform.localRotation.eulerAngles.y, 0f);
+        transform.localRotation =
+            Quaternion.Slerp(transform.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
     }
 
     private void GetDirectionEvent(MoveMessage moveMessage)
@@ -177,7 +188,7 @@ public class MoveInput : MonoBehaviour
         }
     }
 
-    private void Balancing()
+    private void AdjustBalanceOnAir()
     {
         if (groundDetection.IsGrounded)
         {

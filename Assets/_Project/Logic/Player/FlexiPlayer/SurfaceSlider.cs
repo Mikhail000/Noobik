@@ -9,6 +9,7 @@ public class SurfaceSlider : MonoBehaviour
         return forward - Vector3.Dot(forward, _normal) * _normal;
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")

@@ -20,9 +20,10 @@ public class PhysicsJump : MonoBehaviour
 
     public void Jump(Vector3 direction)
     {
+        Debug.Log("HYIIAK");
         //Vector3 target = transform.position + (direction * _length);
         //Vector3 startPosition = transform.position;
-        //PureAnimation fxPlaytime = _fx.PlayAnimations(transform, _duration);
+        //PureAnimation fxPlaytime = _fx.PlayAnimsations(transform, _duration);
 
         if (_rigidbody == null)
         {
