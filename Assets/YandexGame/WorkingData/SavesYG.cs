@@ -14,11 +14,11 @@ namespace YG
         // Можно удалить этот код, но тогда удалите и демо (папка Example)
         public int money = 1;                       // Можно задать полям значения по умолчанию
         public string newPlayerName = "Hello!";
-        
+        public bool[] openLevels = new bool[3];
 
         // Ваши сохранения
 
-        public bool[] openLevels = new bool[3];
+        // ...
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.46169513, g: 0.5124164, b: 0.58993304, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -452,7 +452,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.01824, y: -40.00696, z: 7.0274334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -569,9 +569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e43805fc7af0e34daf2143faab3b6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 489877308288770036, guid: d3989d66ea888a4418e8fad3a52ccbd8, type: 3}
+  playerPrefab: {fileID: 6535724693175765041, guid: f05d6e442e35071438099ae95896095c, type: 3}
   mobileCanvasForInput: {fileID: 8575925831478012655, guid: 9dff2fc1926169c43876e8d333e02d7e, type: 3}
-  camera: {fileID: 5420017649971385925, guid: 32be1d728d3d3504db759cef2c393b0e, type: 3}
+  Camera: {fileID: 5420017649971385925, guid: 32be1d728d3d3504db759cef2c393b0e, type: 3}
+  GameplayHUD: {fileID: 2465671616148783022, guid: 85c78e6e63d78854282c28ba5262ad81, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

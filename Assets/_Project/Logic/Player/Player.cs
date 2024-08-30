@@ -4,6 +4,8 @@ using Zenject;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Rigidbody rigidbody;
+
     private IMessagePublisher _publisher;
     private CompositeDisposable _disposable;
 
@@ -24,6 +26,8 @@ public class Player : MonoBehaviour
 
     public void SetPosition(Vector3 pos)
     {
+        rigidbody.velocity = Vector3.zero;
+
         this.transform.position = pos;
         this.transform.rotation = Quaternion.identity;
     }
@@ -37,7 +41,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Deadly")
         {
-            _publisher.Publish(new DieMessage());
+            Die();
             Debug.Log("GET DEAD");
         }
     }
@@ -48,13 +52,13 @@ public class Player : MonoBehaviour
 
         if (other.tag == "Deadly")
         {
-            _publisher.Publish(new DieMessage());
+            Die();
             Debug.Log("GET DEAD");
         }
 
         if (other.CompareTag("Deadly"))
         {
-            _publisher.Publish(new DieMessage());
+            Die();
             Debug.Log("GET DEAD");
         }
     }

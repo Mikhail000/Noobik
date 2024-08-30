@@ -20,10 +20,6 @@ public class PhysicsJump : MonoBehaviour
 
     public void Jump(Vector3 direction)
     {
-        Debug.Log("HYIIAK");
-        //Vector3 target = transform.position + (direction * _length);
-        //Vector3 startPosition = transform.position;
-        //PureAnimation fxPlaytime = _fx.PlayAnimsations(transform, _duration);
 
         if (_rigidbody == null)
         {
@@ -33,19 +29,21 @@ public class PhysicsJump : MonoBehaviour
 
 
         Vector3 startVelocity = _rigidbody.velocity;
-        Vector3 targetVelocity = direction * _length / _duration;
-        targetVelocity.y = _jumpForce;  // Устанавливаем силу прыжка по оси Y
+
+        //Vector3 targetVelocity = direction * _length / _duration;
+        //targetVelocity.y = _jumpForce;
+
 
         PureAnimation fxPlaytime = _fx.PlayAnimations(transform, _duration);
 
         _playTime.Play(_duration, (progress) =>
         {
+            
+            //Vector3 currentVelocity = Vector3.Lerp(startVelocity, targetVelocity, progress);
+            //_rigidbody.velocity = new Vector3(currentVelocity.x, currentVelocity.y, currentVelocity.z)
+            //+ fxPlaytime.LastChanges.Position;
 
-            //transform.position = Vector3.Lerp(startPosition, target, progress) + fxPlaytime.LastChanges.Position;
-
-            Vector3 currentVelocity = Vector3.Lerp(startVelocity, targetVelocity, progress);
-            _rigidbody.velocity = new Vector3(currentVelocity.x, currentVelocity.y, currentVelocity.z)
-            + fxPlaytime.LastChanges.Position;
+            _rigidbody.velocity = startVelocity + direction * _jumpForce + fxPlaytime.LastChanges.Position;
 
             return null;
         });

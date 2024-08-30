@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using YG;
 using Zenject;
 
 public class LevelEntity : MonoBehaviour
@@ -23,7 +24,6 @@ public class LevelEntity : MonoBehaviour
     private IMessageReceiver _receiver;
     private CompositeDisposable _disposable;
     private IMessagePublisher _publisher;
-    private IDisposable _stopDisposable;
     private PreloaderLevelService _preloaderService;
 
     [Inject]
@@ -32,6 +32,7 @@ public class LevelEntity : MonoBehaviour
     {
         _player = player;
         _receiver = receiver;
+        _publisher = publisher; 
         _disposable = new();
 
         _preloaderService = preloaderService;   
@@ -43,8 +44,9 @@ public class LevelEntity : MonoBehaviour
 
         _lastPassedCheckpoint = StartPoint;
 
-        _receiver.Receive<DieMessage>().Subscribe(ResetLevel).AddTo(_disposable);
-        _receiver.Receive<ReachedFinal>().Subscribe(LoadNextLevel).AddTo(_disposable);
+        _receiver.Receive<DieMessage>().Subscribe(StopOnDie).AddTo(_disposable);
+        _receiver.Receive<LaunchNextLevelEvent>().Subscribe(LoadNextLevel).AddTo(_disposable);
+        _receiver.Receive<RestartEvent>().Subscribe(RestartLevel).AddTo(_disposable);
 
     }
 
@@ -63,11 +65,8 @@ public class LevelEntity : MonoBehaviour
 
     public void PassedThoughFinish()
     {
-        // когда дошли до финиша
-        // ревард экран
-        //_publisher.Publish(new FinishedLevel());
-        // сохраняем уровень, как пройденный и запускаем следующий...
-        _preloaderService.SaveAndLoadNextLevel();
+        _publisher.Publish(new OnShowNextLevelWindow());
+
     }
 
     private void SetCheckpoints()
@@ -77,16 +76,21 @@ public class LevelEntity : MonoBehaviour
     }
 
 
-    private void ResetLevel(DieMessage dieMessage)
+    private void StopOnDie(DieMessage dieMessage)
     {
-        Debug.Log("DIE");
-        _player.SetPosition(_lastPassedCheckpoint.position);
-        _stopDisposable?.Dispose();
+        _publisher.Publish(new OnShowRestartWindow());
     }
 
-    private void LoadNextLevel(ReachedFinal recheadMessage)
+    private void RestartLevel(RestartEvent restartEvent)
     {
+        YandexGame.FullscreenShow();
+        _player.SetPosition(_lastPassedCheckpoint.position);
+    }
 
+    private void LoadNextLevel(LaunchNextLevelEvent launchNextLevelEvent)
+    {
+        YandexGame.FullscreenShow();
+        _preloaderService.SaveAndLoadNextLevel();
     }
 
 }

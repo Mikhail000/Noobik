@@ -7,7 +7,8 @@ public class GameplayInstaller : MonoInstaller
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject mobileCanvasForInput;
-    [SerializeField] private GameObject camera;
+    [SerializeField] private GameObject Camera;
+    [SerializeField] private GameObject GameplayHUD;
     
     public override void InstallBindings()
     {
@@ -15,6 +16,7 @@ public class GameplayInstaller : MonoInstaller
         BindInput();
         BindPlayer();
         BindCamera();
+        BindHUD();
     }
 
 
@@ -52,7 +54,13 @@ public class GameplayInstaller : MonoInstaller
 
     private void BindCamera()
     {
-        CameraFollow cinema = Container.InstantiatePrefabForComponent<CameraFollow>(camera);
+        CameraFollow cinema = Container.InstantiatePrefabForComponent<CameraFollow>(Camera);
         Container.Bind<CameraFollow>().FromInstance(cinema).AsSingle().NonLazy();    
+    }
+
+    private void BindHUD()
+    {
+        UIManager uIManager = Container.InstantiatePrefabForComponent<UIManager>(GameplayHUD);
+        Container.Bind<UIManager>().FromInstance(uIManager).AsSingle().NonLazy();
     }
 }

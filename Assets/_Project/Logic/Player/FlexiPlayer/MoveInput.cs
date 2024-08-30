@@ -10,7 +10,7 @@ public class MoveInput : MonoBehaviour
 
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private SurfaceSlider surfaceSlider;
-    [SerializeField] private GroundDetection groundDetection;
+    [SerializeField] private WheelGroundChecker groundDetection;
     [SerializeField] private BicycleAnimator _bikeAnimator;
     [SerializeField] private Transform tiltPivot;
 
@@ -71,12 +71,12 @@ public class MoveInput : MonoBehaviour
 
         AdjustBalanceOnAir();
 
-        if (_currentMoveDirection != Vector3.zero)
+
+        if (_currentMoveDirection != Vector3.zero && groundDetection.IsGrounded)
         {
             Turn();
             Tilt();
             Move(_currentMoveDirection);
-            // тут вызываем метод у компонента-вращателя колес
             _bikeAnimator.RotateWheels(_currentMoveDirection.magnitude);
         }
         else
@@ -198,7 +198,7 @@ public class MoveInput : MonoBehaviour
         else 
         {
             LockRotationX();
-            speed = onAirSpeed;
+            speed = onGroundSpeed;
         }
 
     }

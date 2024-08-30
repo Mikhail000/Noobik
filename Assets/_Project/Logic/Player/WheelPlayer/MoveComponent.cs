@@ -34,6 +34,12 @@ public class MoveComponent : MonoBehaviour
     [SerializeField] private float turnSpeed;
     [SerializeField] private float tiltAngle;
     [SerializeField] private float tiltSpeed;
+    [SerializeField] private float steerSpeed;
+
+    [Header("Anti-Roll Bar Parameters")]
+    [SerializeField] private float antiRollBarStiffness = 50f; // Жесткость анти-ролл бара
+    [SerializeField] private float wheelBaseWidth = 1.2f; // Расстояние между колесами
+
 
     private bool _isGrounded;
     private Vector3 _localDown;
@@ -47,8 +53,6 @@ public class MoveComponent : MonoBehaviour
 
     private IMessageReceiver _receiver;
     private CompositeDisposable _disposable;
-    private IDisposable _stopDisposable;
-
 
 
     #endregion
@@ -62,37 +66,38 @@ public class MoveComponent : MonoBehaviour
 
     private void Start()
     {
+        _disposable = new CompositeDisposable();
+
         _receiver.Receive<MoveMessage>().Subscribe(GetDirectionEvent).AddTo(_disposable);
         _receiver.Receive<JumpMessage>().Subscribe(GetJumpEvent).AddTo(_disposable);
         _receiver.Receive<StopMessage>().Subscribe(GetStopEvent).AddTo(_disposable);
         _receiver.Receive<DieMessage>().Subscribe(GetDieEvent).AddTo(_disposable);
 
         rigidbody.centerOfMass = new Vector3(0f, 0f, -0.3f);
-        Debug.Log(rigidbody.centerOfMass);
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy()=>
         _disposable.Dispose();
 
-        _stopDisposable?.Dispose();
-    }
 
     private void FixedUpdate()
     {
-        //Debug.Log(groundDetection.IsGrounded);
 
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
+        ApplyAntiRollBar();
+
         AdjustBalanceOnAir();
+
 
         if (_currentMoveDirection != Vector3.zero && _isMoving)
         {
 
-            Move();
             Turn();
             //Tilt();
+            Steering(); 
+            Move();
             UpdateWheels();
         }
         else
@@ -102,14 +107,48 @@ public class MoveComponent : MonoBehaviour
 
     }
 
+    private void ApplyAntiRollBar()
+    {
+        WheelHit frontHit;
+        WheelHit rearHit;
+
+        float travelFront = 1.0f;
+        float travelRear = 1.0f;
+
+        // Проверяем, касаются ли колеса земли
+        bool groundedFront = frontWheel.GetGroundHit(out frontHit);
+        bool groundedRear = rearWheel.GetGroundHit(out rearHit);
+
+        if (groundedFront)
+        {
+            travelFront = (-frontWheel.transform.InverseTransformPoint(frontHit.point).y - frontWheel.radius) / frontWheel.suspensionDistance;
+        }
+
+        if (groundedRear)
+        {
+            travelRear = (-rearWheel.transform.InverseTransformPoint(rearHit.point).y - rearWheel.radius) / rearWheel.suspensionDistance;
+        }
+
+        // Вычисляем силу анти-ролл бара
+        float antiRollForce = (travelFront - travelRear) * antiRollBarStiffness;
+
+        if (groundedFront)
+        {
+            rigidbody.AddForceAtPosition(frontWheel.transform.up * -antiRollForce, frontWheel.transform.position);
+        }
+
+        if (groundedRear)
+        {
+            rigidbody.AddForceAtPosition(rearWheel.transform.up * antiRollForce, rearWheel.transform.position);
+        }
+    }
+
 
     private void GetDirectionEvent(MoveMessage moveMessage)
     {
         _targetMoveDirection = new Vector3(moveMessage.Delta.x, moveMessage.Delta.y, moveMessage.Delta.z);
 
         _isMoving = true;
-
-        _stopDisposable?.Dispose();
     }
 
     private void GetJumpEvent(JumpMessage jumpMessage)
@@ -124,11 +163,10 @@ public class MoveComponent : MonoBehaviour
         _targetMoveDirection = Vector3.zero;
         ApplyBrakes();
         _isMoving = false;
-        _stopDisposable?.Dispose();
 
     }
 
-    private void GetDieEvent(DieMessage dieMessage) 
+    private void GetDieEvent(DieMessage dieMessage)
     {
         ApplyBrakes();
     }
@@ -149,6 +187,15 @@ public class MoveComponent : MonoBehaviour
 
         frontWheel.brakeTorque = breakingForce;
         rearWheel.brakeTorque = breakingForce;
+    }
+
+
+    private void Steering()
+    {
+        float steerAngle = Mathf.Clamp(_currentMoveDirection.x * steerSpeed, -30f, 30f);
+        frontWheel.steerAngle = steerAngle;
+        //rearWheel.steerAngle = steerAngle;
+        //frontTransform.localRotation = Quaternion.Euler(0, steerAngle, 0);
     }
 
     private void Turn()
@@ -211,7 +258,7 @@ public class MoveComponent : MonoBehaviour
     {
         if (groundDetecter.IsGrounded)
         {
-            UnlockRotationX();      
+            UnlockRotationX();
         }
         else
         {
