@@ -38,7 +38,7 @@ public class PhysicsJump : MonoBehaviour
 
         _playTime.Play(_duration, (progress) =>
         {
-            
+
             //Vector3 currentVelocity = Vector3.Lerp(startVelocity, targetVelocity, progress);
             //_rigidbody.velocity = new Vector3(currentVelocity.x, currentVelocity.y, currentVelocity.z)
             //+ fxPlaytime.LastChanges.Position;

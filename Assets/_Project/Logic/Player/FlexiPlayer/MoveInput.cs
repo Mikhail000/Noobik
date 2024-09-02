@@ -31,13 +31,7 @@ public class MoveInput : MonoBehaviour
     private Vector3 _targetMoveDirection;
 
     private bool _isJumping;
-    private float _jumpStartTime;
-    private Vector3 _jumpStartPosition;
-
-    private Vector3 _localDown;
-    private Vector3 _rayOrigin;
-    private float _rayOffset = 2.5f;
-    private float _rayLength = 2.9f;
+    private Vector3 _airVelocity;
 
     private IMessageReceiver _receiver;
     private CompositeDisposable _disposable;
@@ -69,43 +63,51 @@ public class MoveInput : MonoBehaviour
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
+
         AdjustBalanceOnAir();
 
+        Turn();
+        Tilt();
 
-        if (_currentMoveDirection != Vector3.zero && groundDetection.IsGrounded)
+        if (groundDetection.IsGrounded)
         {
-            Turn();
-            Tilt();
-            Move(_currentMoveDirection);
-            _bikeAnimator.RotateWheels(_currentMoveDirection.magnitude);
+            if (_currentMoveDirection != Vector3.zero)
+            {
+                Turn();
+                Tilt();
+                Move(_currentMoveDirection);
+                _bikeAnimator.RotateWheels(_currentMoveDirection.magnitude);
+
+            }
+            else
+            {
+                ResetTilt();
+            }
+
         }
         else
         {
-            ResetTilt();
+            MaintainAirVelocity();
         }
 
+        Debug.Log(_currentMoveDirection);
     }
 
+
+    private void MaintainAirVelocity()
+    {
+        // Продолжать движение с сохраненной скоростью в воздухе
+        if (_airVelocity != Vector3.zero)
+        {
+            Move(_airVelocity.normalized);
+        }
+    }
 
     public void Move(Vector3 direction)
     {
         Vector3 directionAlongSurface = surfaceSlider.Project(direction);
         _offset = directionAlongSurface * (speed * Time.fixedDeltaTime);
         rigidbody.MovePosition(rigidbody.position + _offset);
-    }
-
-    private void CheckForGround()
-    {
-        _localDown = transform.TransformDirection(Vector3.down);
-        _rayOrigin = transform.position + transform.TransformDirection(Vector3.up) * _rayOffset;
-        _isGrounded = Physics.Raycast(_rayOrigin, _localDown, _rayLength, LayerMask.GetMask("Default"));
-        Debug.DrawRay(_rayOrigin, _localDown * _rayLength, Color.blue);
-
-        if (_isGrounded)
-        {
-            Debug.Log(_isGrounded);
-            _isJumping = false;
-        }
     }
 
     private void Turn()
@@ -183,8 +185,10 @@ public class MoveInput : MonoBehaviour
         if (groundDetection.IsGrounded)
         {
             Vector3 vec = new Vector3(0, 1, 0); // Направление прыжка
-            physicsJump.Jump(_currentMoveDirection);
+            physicsJump.Jump(vec);
             _isJumping = true;
+
+            _airVelocity = _currentMoveDirection.normalized * speed;
         }
     }
 
@@ -195,7 +199,7 @@ public class MoveInput : MonoBehaviour
             UnlockRotationX();
             speed = onGroundSpeed;
         }
-        else 
+        else
         {
             LockRotationX();
             speed = onGroundSpeed;

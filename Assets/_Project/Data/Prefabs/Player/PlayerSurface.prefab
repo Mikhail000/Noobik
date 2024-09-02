@@ -92,7 +92,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713553196361259662}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: dbc3036e73b0954408a4ad472a0678f1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -231,7 +231,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993105295685231215}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: dbc3036e73b0954408a4ad472a0678f1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -639,7 +639,7 @@ MonoBehaviour:
   _bikeAnimator: {fileID: 3451275737357312550}
   tiltPivot: {fileID: 5993462625923236760}
   onGroundSpeed: 10
-  onAirSpeed: 0
+  onAirSpeed: 10
   turnSpeed: 7
   tiltAngle: 30
   tiltSpeed: 5
@@ -674,25 +674,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2.8742888
-      outSlope: 2.8742888
+      inSlope: 1
+      outSlope: 1
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.99379444
-      value: 2.8564522
-      inSlope: 2.8742888
-      outSlope: 2.8742888
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 1.3
+  _height: 2.5
   _playTime: {fileID: 0}
 --- !u!114 &385202835856099128
 MonoBehaviour:
@@ -709,9 +709,9 @@ MonoBehaviour:
   _rigidbody: {fileID: 4515678688205196864}
   _surfaceSlider: {fileID: 4761943445625032083}
   _fx: {fileID: 4855625964163120663}
-  _length: 0.1
-  _duration: 0.05
-  _jumpForce: 3.5
+  _length: 0.3
+  _duration: 0.1
+  _jumpForce: 5
 --- !u!114 &5558411709419191784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,7 +764,7 @@ MonoBehaviour:
   wheels:
   - {fileID: 1345686471418470052}
   - {fileID: 9140991306973778479}
-  rotationSpeedMultiplier: 0
+  rotationSpeedMultiplier: -800
 --- !u!114 &8711884005360974778
 MonoBehaviour:
   m_ObjectHideFlags: 0
