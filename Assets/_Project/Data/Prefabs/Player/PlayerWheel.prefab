@@ -43,7 +43,7 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 5
   m_SuspensionSpring:
-    spring: 4000
+    spring: 4500
     damper: 500
     targetPosition: 0.5
   m_SuspensionDistance: 0.25
@@ -51,17 +51,17 @@ WheelCollider:
   m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1.5
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 2
-    m_AsymptoteValue: 1
-    m_Stiffness: 1.5
+    m_ExtremumSlip: 0.2
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.8
+    m_Stiffness: 2.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 1.5
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 1.8
-    m_AsymptoteValue: 1.5
-    m_Stiffness: 1.5
+    m_ExtremumSlip: 0.1
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.4
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 3
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -144,8 +144,8 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 20
   m_Drag: 0
-  m_AngularDrag: 0.1
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: -0.3}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -154,7 +154,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   rearTransform: {fileID: 2824248867176572373}
   tiltPivot: {fileID: 8845303187065494236}
   directionAlignment: 0
-  acceleration: 25
+  acceleration: 30
   breakingForce: 50
   turnSpeed: 7
   tiltAngle: 30
@@ -239,7 +239,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 2
+  _height: 5
   _playTime: {fileID: 5194092553564640943}
 --- !u!114 &9221325408240101182
 MonoBehaviour:
@@ -474,7 +474,7 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 5
   m_SuspensionSpring:
-    spring: 4000
+    spring: 4500
     damper: 500
     targetPosition: 0.5
   m_SuspensionDistance: 0.25
@@ -482,17 +482,17 @@ WheelCollider:
   m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 1.5
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 2
-    m_AsymptoteValue: 1
-    m_Stiffness: 1.5
+    m_ExtremumSlip: 0.2
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.8
+    m_Stiffness: 2.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 1.5
-    m_ExtremumValue: 2
-    m_AsymptoteSlip: 1.8
-    m_AsymptoteValue: 1.5
-    m_Stiffness: 1.5
+    m_ExtremumSlip: 0.1
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.4
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 3
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

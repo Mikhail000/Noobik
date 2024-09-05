@@ -36,6 +36,7 @@ public class MoveInput : MonoBehaviour
     private IMessageReceiver _receiver;
     private CompositeDisposable _disposable;
     private IDisposable _stopDisposable;
+    private IDisposable _lockRotationSubscription;
 
     [Inject]
     private void Construct(IMessageReceiver receiver)
@@ -67,13 +68,11 @@ public class MoveInput : MonoBehaviour
         AdjustBalanceOnAir();
 
         Turn();
-        Tilt();
 
         if (groundDetection.IsGrounded)
         {
             if (_currentMoveDirection != Vector3.zero)
             {
-                Turn();
                 Tilt();
                 Move(_currentMoveDirection);
                 _bikeAnimator.RotateWheels(_currentMoveDirection.magnitude);
@@ -89,8 +88,6 @@ public class MoveInput : MonoBehaviour
         {
             MaintainAirVelocity();
         }
-
-        Debug.Log(_currentMoveDirection);
     }
 
 
@@ -194,22 +191,54 @@ public class MoveInput : MonoBehaviour
 
     private void AdjustBalanceOnAir()
     {
+        Debug.Log($"IsGrounded: {groundDetection.IsGrounded}");
         if (groundDetection.IsGrounded)
         {
+            Debug.Log("Grounded: UnlockRotationX");
             UnlockRotationX();
             speed = onGroundSpeed;
+
+            // Отменяем запланированную блокировку вращения, если велосипед снова на земле
+            _lockRotationSubscription?.Dispose();
+            _lockRotationSubscription = null;
         }
         else
         {
-            LockRotationX();
-            speed = onGroundSpeed;
+            Debug.Log("Not Grounded: Preparing to LockRotationX"); // Отладка
+            Debug.Log($"Current _lockRotationSubscription: {_lockRotationSubscription}"); // Проверка состояния подписки
+
+            // Проверяем, если уже есть активная подписка, не создаем новую
+            if (_lockRotationSubscription == null)
+            {
+                Debug.Log("Creating new subscription for LockRotationX..."); // Добавить отладку
+
+                _lockRotationSubscription = Observable.Timer(TimeSpan.FromSeconds(0.75))
+                    .TakeUntil(Observable.EveryUpdate().Where(_ =>
+                    {
+                        Debug.Log("Checking if grounded to cancel timer..."); // Добавить отладку
+                        return groundDetection.IsGrounded;
+                    })) // Отмена, если велосипед снова на земле
+                    .Subscribe(_ =>
+                    {
+                        LockRotationX();
+                        speed = onAirSpeed;
+                        Debug.Log("GET LOCK ROTATION");
+                        _lockRotationSubscription = null;  // Сбрасываем подписку после выполнения
+                    },
+                    () => Debug.Log("Subscription completed or cancelled.")) // Добавить отладку для завершения подписки
+                    .AddTo(_disposable); // Добавляем в CompositeDisposable для управления подписками
+            }
+            else
+            {
+                Debug.Log("Subscription already exists, not creating a new one.");
+            }
         }
 
     }
 
     private void LockRotationX()
     {
-
+        Debug.Log("GET LOCK ROTATION");
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 

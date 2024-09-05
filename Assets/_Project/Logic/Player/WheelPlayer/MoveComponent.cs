@@ -96,7 +96,7 @@ public class MoveComponent : MonoBehaviour
 
             Turn();
             //Tilt();
-            Steering(); 
+            //Steering(); 
             Move();
             UpdateWheels();
         }
