@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - Deadly
   - Bouncy
+  - FxTemporaire
+  - Slime
   layers:
   - Default
   - TransparentFX

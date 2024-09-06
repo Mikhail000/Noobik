@@ -536,6 +536,8 @@ GameObject:
   - component: {fileID: 4849660734814223484}
   - component: {fileID: 3451275737357312550}
   - component: {fileID: 8711884005360974778}
+  - component: {fileID: -3795431538056155903}
+  - component: {fileID: -2143834127200008594}
   m_Layer: 6
   m_Name: PlayerSurface
   m_TagString: Player
@@ -621,6 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 4515678688205196864}
+  jump: {fileID: -2143834127200008594}
 --- !u!114 &2125933069029003432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,6 +786,62 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &-3795431538056155903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535724693175765041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dff761eb4c8106419cc23d815db2349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _yAnimation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _height: 6.5
+  _playTime: {fileID: 0}
+--- !u!114 &-2143834127200008594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535724693175765041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c2fb930830e95458f31e520d4aa7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 4515678688205196864}
+  _surfaceSlider: {fileID: 4761943445625032083}
+  _fx: {fileID: -3795431538056155903}
+  _length: 1
+  _duration: 0.7
+  _jumpForce: 1.5
 --- !u!1 &8243707182642472975
 GameObject:
   m_ObjectHideFlags: 0

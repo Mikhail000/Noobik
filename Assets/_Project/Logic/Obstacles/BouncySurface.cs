@@ -3,46 +3,42 @@ using UnityEngine;
 
 public class BouncySurface : MonoBehaviour
 {
-    [SerializeField] private AnimationCurve jumpCurve;
-    [SerializeField] private float height = 2.0f;
-    [SerializeField] private float length = 5.0f;
-    [SerializeField] private float duration = 1.0f;
-    [SerializeField] private float jumpForce = 10.0f;
+    [SerializeField] private float bounceForce = 10f; // Сила отталкивания
+    [SerializeField] private float bounceDamping = 0.5f; // Затухание отталкивания (0 = нет затухания, 1 = полное затухание)
 
+    private Rigidbody rigidbody;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("GET HIT");
-
-        if (collision.gameObject.TryGetComponent(out Rigidbody rigidbody))
+    
+        if (other.gameObject.tag == "Player")
         {
-            Debug.Log("GET HIT");
-            StartCoroutine(Jump(rigidbody));
+    
+            // Получаем Rigidbody объекта игрока
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+    
+            if (rb != null)
+            {
+                // Получаем направление скорости объекта (направление его движения)
+                Vector3 incomingDirection = rb.velocity.normalized;
+    
+                // Получаем нормаль к поверхности пружинящей платформы
+                Vector3 surfaceNormal = transform.up; // Используем вектор вверх платформы в качестве нормали
+    
+                // Рассчитываем вектор отражения от поверхности
+                Vector3 reflectDirection = Vector3.Reflect(incomingDirection, surfaceNormal);
+    
+                rb.velocity = Vector3.Reflect(incomingDirection, surfaceNormal) * bounceForce;
+    
+                // Применяем силу отталкивания, уменьшая ее в зависимости от затухания
+                //rb.velocity = reflectDirection * bounceForce * (1f - bounceDamping);
+    
+    
+                // Выводим отладочное сообщение
+                Debug.Log("Player Bounced Off the Spring Surface!");
+            }
         }
-    }
-
-    private IEnumerator Jump(Rigidbody rigidbody)
-    {
-        float elapsedTime = 0;
-        Vector3 startPosition = rigidbody.position;
-        Vector3 targetPosition = startPosition + rigidbody.transform.forward * length;
-
-        while (elapsedTime < duration)
-        {
-            float progress = elapsedTime / duration;
-            float curveValue = jumpCurve.Evaluate(progress);
-
-            Vector3 jumpOffset = new Vector3(0, curveValue * height, 0);
-            Vector3 targetOffset = Vector3.Lerp(startPosition, targetPosition, progress);
-
-            rigidbody.MovePosition(targetOffset + jumpOffset);
-            rigidbody.velocity = Vector3.zero; // Reset velocity to ensure controlled movement
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange); // Apply force at the end
+    
     }
 
 }

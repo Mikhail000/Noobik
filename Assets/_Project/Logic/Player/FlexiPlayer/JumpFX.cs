@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UniRx.Triggers;
 using UnityEngine;
 
 public class JumpFX : MonoBehaviour
@@ -16,7 +13,7 @@ public class JumpFX : MonoBehaviour
 
     public PureAnimation PlayAnimations(Transform jumper, float duration)
     {
-        _playTime.Play(duration, (float progress)=>
+        _playTime.Play(duration, (float progress) =>
             {
                 Vector3 position = new Vector3(0, _height * _yAnimation.Evaluate(progress), 0);
 

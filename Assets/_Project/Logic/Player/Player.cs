@@ -5,6 +5,7 @@ using Zenject;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private SlimePhysicJump jump;
 
     private IMessagePublisher _publisher;
     private CompositeDisposable _disposable;
@@ -44,6 +45,13 @@ public class Player : MonoBehaviour
             Die();
             Debug.Log("GET DEAD");
         }
+
+
+        if (other.tag == "Slime")
+        {
+            //jump.Jump(rigidbody.velocity.normalized);
+        }
+
     }
 
     private void OnParticleCollision(GameObject other)
@@ -62,6 +70,7 @@ public class Player : MonoBehaviour
             Debug.Log("GET DEAD");
         }
     }
+
 
 }
 

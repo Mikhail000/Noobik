@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 353273237201370186}
   - component: {fileID: 3697937020574513136}
-  - component: {fileID: 4808564026303428469}
+  - component: {fileID: 6358420131307946934}
   m_Layer: 3
   m_Name: littleSlimeSurface
-  m_TagString: Ground
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,33 +66,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 1, z: 8}
   m_Center: {x: 0, y: 0, z: 2}
---- !u!54 &4808564026303428469
-Rigidbody:
+--- !u!114 &6358420131307946934
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763073643731980358}
-  serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e3221c435933e4f934e4842675496c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: 10
+  bounceDamping: 0
 --- !u!1 &2012805892575602626
 GameObject:
   m_ObjectHideFlags: 0

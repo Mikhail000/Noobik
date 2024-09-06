@@ -80,7 +80,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1665198817890740194}
-  - component: {fileID: 6997325217793254990}
+  - component: {fileID: 9001709739003259588}
   - component: {fileID: 3660277237366515239}
   - component: {fileID: 7865858565665009158}
   - component: {fileID: 2827808697937018324}
@@ -90,9 +90,11 @@ GameObject:
   - component: {fileID: 4093648100402196799}
   - component: {fileID: 5194092553564640943}
   - component: {fileID: 1382000622020812943}
+  - component: {fileID: 5766011270534717514}
+  - component: {fileID: 4336393364152332475}
   m_Layer: 0
   m_Name: PlayerWheel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +115,7 @@ Transform:
   - {fileID: 8845303187065494236}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6997325217793254990
+--- !u!65 &9001709739003259588
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,8 +134,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.8, z: 1.7}
-  m_Center: {x: 0, y: 0.5, z: -0.22}
+  m_Size: {x: 0.19, y: 2, z: 2}
+  m_Center: {x: 0, y: 0.83, z: -0.23}
 --- !u!54 &3660277237366515239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -174,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 3660277237366515239}
+  jump: {fileID: 5766011270534717514}
 --- !u!114 &2827808697937018324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +316,62 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &5766011270534717514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489877308288770036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c2fb930830e95458f31e520d4aa7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 3660277237366515239}
+  _surfaceSlider: {fileID: 8941137310736868006}
+  _fx: {fileID: 4336393364152332475}
+  _length: 1
+  _duration: 0.5
+  _jumpForce: 3
+--- !u!114 &4336393364152332475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489877308288770036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dff761eb4c8106419cc23d815db2349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _yAnimation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.9301302
+      outSlope: 3.9301302
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.24212272
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.40151
+      outSlope: -0.40151
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09413558
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _height: 5
+  _playTime: {fileID: 5194092553564640943}
 --- !u!1 &3856925572305532840
 GameObject:
   m_ObjectHideFlags: 0
