@@ -182,6 +182,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'mediumTimberLog '
       objectReference: {fileID: 0}
+    - target: {fileID: 2951870894071719808, guid: ab12aac0ebc9d5049baca0c58a8f5d59, type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000602653440584474, guid: ab12aac0ebc9d5049baca0c58a8f5d59, type: 3}
+      propertyPath: rotationSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 4224740289856417559, guid: ab12aac0ebc9d5049baca0c58a8f5d59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

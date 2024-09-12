@@ -10,6 +10,7 @@ TagManager:
   - Bouncy
   - FxTemporaire
   - Slime
+  - Slippery
   layers:
   - Default
   - TransparentFX

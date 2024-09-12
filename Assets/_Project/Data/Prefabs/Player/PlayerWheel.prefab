@@ -177,6 +177,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 3660277237366515239}
   jump: {fileID: 5766011270534717514}
+  groundChecker: {fileID: 1382000622020812943}
+  frontWheel: {fileID: 5489087969980828341}
+  rearWheel: {fileID: 4557671447427787837}
+  normalForwardStiffnessFrontWheel: 2.5
+  normalSideStiffnessFrontWheel: 3
+  normalForwardStiffnessRearWheel: 2.5
+  normalSideStiffnessRearWheel: 3
+  slipperyForwardStiffnessFrontWheel: 0.7
+  slipperySideStiffnessFrontWheel: 1
+  slipperyForwardStiffnessRearWheel: 0.7
+  slipperySideStiffnessRearWheel: 1
 --- !u!114 &2827808697937018324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +253,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 5
+  _height: 4.5
   _playTime: {fileID: 5194092553564640943}
 --- !u!114 &9221325408240101182
 MonoBehaviour:
@@ -261,7 +272,7 @@ MonoBehaviour:
   _fx: {fileID: 5078256574354713483}
   _length: 0.1
   _duration: 0.05
-  _jumpForce: 2
+  _jumpForce: 1.5
 --- !u!114 &8941137310736868006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +326,7 @@ MonoBehaviour:
   rayLength: 0.6
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4294967295
 --- !u!114 &5766011270534717514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,9 +342,9 @@ MonoBehaviour:
   _rigidbody: {fileID: 3660277237366515239}
   _surfaceSlider: {fileID: 8941137310736868006}
   _fx: {fileID: 4336393364152332475}
-  _length: 1
+  _length: 100
   _duration: 0.5
-  _jumpForce: 3
+  _jumpForce: 300
 --- !u!114 &4336393364152332475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +381,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 5
+  _height: 50000
   _playTime: {fileID: 5194092553564640943}
 --- !u!1 &3856925572305532840
 GameObject:

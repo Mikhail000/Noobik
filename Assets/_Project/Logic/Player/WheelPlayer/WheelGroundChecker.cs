@@ -13,11 +13,15 @@ public class WheelGroundChecker : MonoBehaviour
     private bool _frontHitted;
     private bool _rearHitted;
 
+    private string _surfaceName;
+
     public bool IsGrounded => _isGrounded;
+    public string SurfaceName => _surfaceName;
 
     private void FixedUpdate()
     {
         _isGrounded = CheckForHit();
+        _surfaceName = GetSurfaceType();
     }
 
     public bool CheckForHit()
@@ -26,6 +30,27 @@ public class WheelGroundChecker : MonoBehaviour
         _rearHitted = CheckGrounded(rearWheel);
     
         return _frontHitted || _rearHitted;
+    }
+
+    public string GetSurfaceType()
+    {
+        RaycastHit frontHit;
+        RaycastHit rearHit;
+
+        bool frontGrounded = Physics.Raycast(frontWheel.position, Vector3.down, out frontHit, rayLength, groundLayer);
+        bool rearGrounded = Physics.Raycast(rearWheel.position, Vector3.down, out rearHit, rayLength, groundLayer);
+
+        // ѕровер€ем, что оба луча наход€тс€ на поверхности
+        if (frontGrounded && rearGrounded)
+        {
+            // ѕровер€ем, что оба колеса наход€тс€ на одной и той же поверхности
+            if (frontHit.collider.tag == rearHit.collider.tag)
+            {
+                return frontHit.collider.tag; // ¬озвращаем тег поверхности
+            }
+        }
+
+        return null;
     }
 
     // ћетод дл€ проверки приземленности дл€ колеса
@@ -48,5 +73,7 @@ public class WheelGroundChecker : MonoBehaviour
         Gizmos.color = _rearHitted ? Color.green : Color.red;
         Gizmos.DrawLine(rearWheel.position, rearWheel.position + Vector3.down * rayLength);
     }
+
+
 
 }
