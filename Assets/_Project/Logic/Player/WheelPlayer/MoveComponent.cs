@@ -73,7 +73,7 @@ public class MoveComponent : MonoBehaviour
         _receiver.Receive<StopMessage>().Subscribe(GetStopEvent).AddTo(_disposable);
         _receiver.Receive<DieMessage>().Subscribe(GetDieEvent).AddTo(_disposable);
 
-        rigidbody.centerOfMass = new Vector3(0f, 0f, -0.3f);
+        rigidbody.centerOfMass = new Vector3(0f, 0.35f, -0.3f);
     }
 
     private void OnDestroy()=>
@@ -86,7 +86,7 @@ public class MoveComponent : MonoBehaviour
         _currentMoveDirection =
             Vector3.Lerp(_currentMoveDirection, _targetMoveDirection, Time.fixedDeltaTime * tiltSpeed);
 
-        ApplyAntiRollBar();
+        //ApplyAntiRollBar();
 
         AdjustBalanceOnAir();
 
@@ -95,9 +95,9 @@ public class MoveComponent : MonoBehaviour
         {
 
             Turn();
-            //Tilt();
-            //Steering(); 
+            Tilt();
             Move();
+            //Steering(); 
             UpdateWheels();
         }
         else
@@ -105,6 +105,8 @@ public class MoveComponent : MonoBehaviour
             ResetTilt();
         }
 
+
+        Debug.Log(rigidbody.velocity.magnitude);
     }
 
     private void ApplyAntiRollBar()
@@ -176,8 +178,18 @@ public class MoveComponent : MonoBehaviour
         frontWheel.brakeTorque = 0f;
         rearWheel.brakeTorque = 0f;
 
-        frontWheel.motorTorque = acceleration;
-        rearWheel.motorTorque = acceleration;
+        // ВПЕРЕД
+        if (_currentMoveDirection.z > 0)
+        {
+            frontWheel.motorTorque = acceleration;
+            rearWheel.motorTorque = acceleration;
+        }
+        else if (_currentMoveDirection.z < 0) // НАЗАД
+        {
+            frontWheel.motorTorque = -acceleration;
+            rearWheel.motorTorque = -acceleration;
+        }
+
     }
 
     private void ApplyBrakes()
@@ -189,10 +201,9 @@ public class MoveComponent : MonoBehaviour
         rearWheel.brakeTorque = breakingForce;
     }
 
-
     private void Steering()
     {
-        float steerAngle = Mathf.Clamp(_currentMoveDirection.x * steerSpeed, -30f, 30f);
+        float steerAngle = Mathf.Clamp(_currentMoveDirection.x * steerSpeed, -45f, 45f);
         frontWheel.steerAngle = steerAngle;
         //rearWheel.steerAngle = steerAngle;
         //frontTransform.localRotation = Quaternion.Euler(0, steerAngle, 0);
@@ -258,11 +269,12 @@ public class MoveComponent : MonoBehaviour
     {
         if (groundDetecter.IsGrounded)
         {
-            UnlockRotationX();
+            //UnlockRotationX();
         }
         else
         {
-            LockRotationX();
+            //LockRotationX();
+            Turn();
         }
 
     }

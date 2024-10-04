@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.tag == "Deadly")
         {
             Die();
@@ -85,7 +86,6 @@ public class Player : MonoBehaviour
 
         if (other.tag == "Slime")
         {
-            Debug.Log("GET SLIMED");
             jump.Bounc(other, rigidbody.velocity.normalized);
         }
 
@@ -93,18 +93,15 @@ public class Player : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("GET DEAD");
 
         if (other.tag == "Deadly")
         {
             Die();
-            Debug.Log("GET DEAD");
         }
 
         if (other.CompareTag("Deadly"))
         {
             Die();
-            Debug.Log("GET DEAD");
         }
     }
 

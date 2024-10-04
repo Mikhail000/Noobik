@@ -73,11 +73,6 @@ public class SlimePhysicJump : MonoBehaviour
         // Обнуляем текущую скорость для обеспечения постоянного прыжка
         _rigidbody.velocity = Vector3.zero;
 
-        _playTime.Play(_duration, (progress) =>
-        {
-
-        });
-
         // Применяем силу прыжка по направлению и добавляем эффект FX
         _rigidbody.AddForce(direction * _jumpForce, ForceMode.Impulse);
 
