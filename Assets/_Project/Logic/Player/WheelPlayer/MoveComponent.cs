@@ -74,6 +74,7 @@ public class MoveComponent : MonoBehaviour
         _receiver.Receive<DieMessage>().Subscribe(GetDieEvent).AddTo(_disposable);
 
         rigidbody.centerOfMass = new Vector3(0f, 0.35f, -0.3f);
+        //rigidbody.centerOfMass = new Vector3(0f, 0.1f, -0.2f);
     }
 
     private void OnDestroy()=>
@@ -175,20 +176,24 @@ public class MoveComponent : MonoBehaviour
 
     private void Move()
     {
-        frontWheel.brakeTorque = 0f;
-        rearWheel.brakeTorque = 0f;
+        if (groundDetecter.IsGrounded)
+        {
+            frontWheel.brakeTorque = 0f;
+            rearWheel.brakeTorque = 0f;
 
-        // ВПЕРЕД
-        if (_currentMoveDirection.z > 0)
-        {
-            frontWheel.motorTorque = acceleration;
-            rearWheel.motorTorque = acceleration;
+            // ВПЕРЕД
+            if (_currentMoveDirection.z > 0)
+            {
+                frontWheel.motorTorque = acceleration;
+                rearWheel.motorTorque = acceleration;
+            }
+            else if (_currentMoveDirection.z < 0) // НАЗАД
+            {
+                frontWheel.motorTorque = -acceleration;
+                rearWheel.motorTorque = -acceleration;
+            }
         }
-        else if (_currentMoveDirection.z < 0) // НАЗАД
-        {
-            frontWheel.motorTorque = -acceleration;
-            rearWheel.motorTorque = -acceleration;
-        }
+        else ApplyBrakes();
 
     }
 
@@ -269,11 +274,11 @@ public class MoveComponent : MonoBehaviour
     {
         if (groundDetecter.IsGrounded)
         {
-            //UnlockRotationX();
+            UnlockRotationX();
         }
         else
         {
-            //LockRotationX();
+            LockRotationX();
             Turn();
         }
 

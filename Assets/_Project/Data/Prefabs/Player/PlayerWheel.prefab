@@ -41,7 +41,7 @@ WheelCollider:
   m_GameObject: {fileID: 350510217703654492}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 5
+  m_Radius: 5.15
   m_SuspensionSpring:
     spring: 4500
     damper: 500
@@ -113,6 +113,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8845303187065494236}
+  - {fileID: 5519772265867781997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9001709739003259588
@@ -147,7 +148,7 @@ Rigidbody:
   m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0.35, z: -0.57}
+  m_CenterOfMass: {x: 0, y: 0.1, z: -0.2}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -253,7 +254,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 4.5
+  _height: 5
   _playTime: {fileID: 5194092553564640943}
 --- !u!114 &9221325408240101182
 MonoBehaviour:
@@ -270,7 +271,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 3660277237366515239}
   _surfaceSlider: {fileID: 8941137310736868006}
   _fx: {fileID: 5078256574354713483}
-  _length: 0.1
+  _length: 0.45
   _duration: 0.05
   _jumpForce: 1.5
 --- !u!114 &8941137310736868006
@@ -542,7 +543,7 @@ WheelCollider:
   m_GameObject: {fileID: 6356820981233147200}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 5
+  m_Radius: 5.15
   m_SuspensionSpring:
     spring: 4500
     damper: 500
@@ -743,7 +744,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8605419611992294613}
-  - {fileID: 5519772265867781997}
   m_Father: {fileID: 1665198817890740194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8548141736477409520
@@ -870,7 +870,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8845303187065494236}
+    m_TransformParent: {fileID: 1665198817890740194}
     m_Modifications:
     - target: {fileID: 841669213318010020, guid: c4e48ce3968d24944b686e0cf5b41950, type: 3}
       propertyPath: m_Name
@@ -878,7 +878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 841669213318010020, guid: c4e48ce3968d24944b686e0cf5b41950, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7754992340309432284, guid: c4e48ce3968d24944b686e0cf5b41950, type: 3}
       propertyPath: m_LocalPosition.x
