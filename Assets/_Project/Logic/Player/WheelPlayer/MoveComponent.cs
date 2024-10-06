@@ -77,7 +77,7 @@ public class MoveComponent : MonoBehaviour
         //rigidbody.centerOfMass = new Vector3(0f, 0.1f, -0.2f);
     }
 
-    private void OnDestroy()=>
+    private void OnDestroy() =>
         _disposable.Dispose();
 
 
@@ -181,17 +181,9 @@ public class MoveComponent : MonoBehaviour
             frontWheel.brakeTorque = 0f;
             rearWheel.brakeTorque = 0f;
 
-            // ВПЕРЕД
-            if (_currentMoveDirection.z > 0)
-            {
-                frontWheel.motorTorque = acceleration;
-                rearWheel.motorTorque = acceleration;
-            }
-            else if (_currentMoveDirection.z < 0) // НАЗАД
-            {
-                frontWheel.motorTorque = -acceleration;
-                rearWheel.motorTorque = -acceleration;
-            }
+            frontWheel.motorTorque = acceleration;
+            rearWheel.motorTorque = acceleration;
+
         }
         else ApplyBrakes();
 
