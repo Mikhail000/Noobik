@@ -730,7 +730,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: PROJECT:PluginYG
+  webGLTemplate: PROJECT:YandexGame
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
@@ -761,7 +761,7 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     Standalone: YG_PLUGIN_YANDEX_GAME;YG_NEWTONSOFT_FOR_SAVES;DOTWEEN
-    WebGL: DOTWEEN;YG_PLUGIN_YANDEX_GAME;YG_NEWTONSOFT_FOR_AUTOLOCALIZATION;YG_NEWTONSOFT_FOR_SAVES;YG_TEXT_MESH_PRO
+    WebGL: DOTWEEN;YG_PLUGIN_YANDEX_GAME;YG_NEWTONSOFT_FOR_AUTOLOCALIZATION;YG_NEWTONSOFT_FOR_SAVES;YG_TEXT_MESH_PRO;PLUGIN_YG_2;YandexGamePlatform;NJSON_YG2
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
     iPhone: DOTWEEN

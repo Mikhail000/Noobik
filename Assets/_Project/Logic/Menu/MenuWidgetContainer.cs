@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using YG;
 
+
 namespace _Project.Logic.Menu
 {
     public class MenuWidgetContainer : MonoBehaviour
@@ -32,6 +33,7 @@ namespace _Project.Logic.Menu
                     widgets[i].UpdateWidgetState(false);
                 }
             }
+            
         }
     }
 }

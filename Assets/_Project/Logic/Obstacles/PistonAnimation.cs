@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PistonAnimation : MonoBehaviour
 {
+    [SerializeField] private Rigidbody rb;
+
     [SerializeField] private float extendDistance;
 
     [SerializeField] private float pushDuration;
@@ -22,7 +24,7 @@ public class PistonAnimation : MonoBehaviour
 
     private void Start()
     {
-        _initialPosition = transform.localPosition;
+        _initialPosition = rb.position;
         _elapsedTime = 0f;
         _isPushing = true;
     }

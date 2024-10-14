@@ -106,8 +106,6 @@ public class MoveComponent : MonoBehaviour
             ResetTilt();
         }
 
-
-        Debug.Log(rigidbody.velocity.magnitude);
     }
 
     private void ApplyAntiRollBar()

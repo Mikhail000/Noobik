@@ -177,6 +177,7 @@ MonoBehaviour:
   <Checkpoints>k__BackingField:
   - {fileID: 6126681158421291730}
   <isPassed>k__BackingField: 0
+  <skyMaterial>k__BackingField: {fileID: 2100000, guid: bfa0a2bdfb6244d4ab591f6124611880, type: 2}
 --- !u!1 &4145266869458957981
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class LevelEntity : MonoBehaviour
     [field: SerializeField] public List<Checkpoint> Checkpoints { get; private set; }
 
     [field: SerializeField] public bool isPassed { get; private set; }
+    [field: SerializeField] public Material skyMaterial { get; private set; }
 
     private int _nextCheckpointIndex = default;
     private Transform _lastPassedCheckpoint;
@@ -40,6 +41,8 @@ public class LevelEntity : MonoBehaviour
 
     private void Start()
     {
+        RenderSettings.skybox = skyMaterial;
+
         SetCheckpoints();
 
         _lastPassedCheckpoint = StartPoint;
