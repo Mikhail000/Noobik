@@ -28,8 +28,11 @@ public class PhysicsJump : MonoBehaviour
             return;
         }
 
+        // ѕолучаем нормаль поверхности дл€ учета наклона
+        Vector3 projectedDirection = _surfaceSlider.Project(direction.normalized);
+
         Vector3 startVelocity = _rigidbody.velocity;
-        Vector3 targetVelocity = direction * _length / _duration;
+        Vector3 targetVelocity = projectedDirection * _length / _duration;
         targetVelocity.y = _jumpForce;
 
         PureAnimation fxPlaytime = _fx.PlayAnimations(transform, _duration);

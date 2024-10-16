@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SurfaceSlider : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class SurfaceSlider : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _normal = collision.contacts[0].normal;
+            Debug.Log(_normal);
         }
     }
 
