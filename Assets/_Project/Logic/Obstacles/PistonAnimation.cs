@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PistonAnimation : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody pistonRigidbody;
 
     [SerializeField] private float extendDistance;
 
@@ -15,7 +15,7 @@ public class PistonAnimation : MonoBehaviour
     [SerializeField] private AnimationCurve _pullCurve;
     [SerializeField] private AnimationCurve _pushCurve;
 
-    private Vector3 _initialPosition;
+    private Vector3 _initialLocalPosition;
     private float _elapsedTime;
     private bool _isPushing;
     private bool _isPulling;
@@ -24,9 +24,11 @@ public class PistonAnimation : MonoBehaviour
 
     private void Start()
     {
-        _initialPosition = rb.position;
+        _initialLocalPosition = transform.localPosition;
         _elapsedTime = 0f;
         _isPushing = true;
+
+        pistonRigidbody.centerOfMass = new Vector3(-0.55f, 0f, 0f);
     }
 
     private void Update()
@@ -61,7 +63,11 @@ public class PistonAnimation : MonoBehaviour
             _elapsedTime = 0f;
         }
         float curveValue = _pushCurve.Evaluate(progress);
-        transform.localPosition = Vector3.Lerp(_initialPosition, _initialPosition + Vector3.up * extendDistance, curveValue);
+
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        Vector3 targetLocalPosition = Vector3.Lerp(_initialLocalPosition, _initialLocalPosition + Vector3.up * extendDistance, curveValue);
+        Vector3 targetWorldPosition = transform.parent.TransformPoint(targetLocalPosition); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -> пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        pistonRigidbody.MovePosition(targetWorldPosition); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Rigidbody
     }
 
     private void Pull()
@@ -76,7 +82,12 @@ public class PistonAnimation : MonoBehaviour
             _elapsedTime = 0f;
         }
         float curveValue = _pullCurve.Evaluate(progress);
-        transform.localPosition = Vector3.Lerp(_initialPosition + Vector3.up * extendDistance, _initialPosition, curveValue);
+
+
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        Vector3 targetLocalPosition = Vector3.Lerp(_initialLocalPosition + Vector3.up * extendDistance, _initialLocalPosition, curveValue);
+        Vector3 targetWorldPosition = transform.parent.TransformPoint(targetLocalPosition); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -> пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        pistonRigidbody.MovePosition(targetWorldPosition); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Rigidbody
     }
 
     private void PauseAtPush()
@@ -96,9 +107,26 @@ public class PistonAnimation : MonoBehaviour
         if (_elapsedTime >= reducePause)
         {
             _isPausingPushed = false;
-            _isPushing = true; // Цикл начинается снова
+            _isPushing = true;
             _elapsedTime = 0f;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (GetComponent<Rigidbody>() == null)
+        {
+            pistonRigidbody = GetComponent<Rigidbody>();
+        }
+
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Gizmos
+        Gizmos.color = Color.red;
+
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Rigidbody
+        Gizmos.DrawSphere(GetComponent<Rigidbody>().worldCenterOfMass, 0.1f);
+
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        Gizmos.DrawLine(transform.position, GetComponent<Rigidbody>().worldCenterOfMass);
     }
 
 }

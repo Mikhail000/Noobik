@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8111b0ec1555c844c8372b4b030ded4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pistonRigidbody: {fileID: 7609646873875745695}
   extendDistance: 1
   pushDuration: 0.15
   pullDuration: 0.5
@@ -215,10 +216,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694232040838972510}
   serializedVersion: 4
-  m_Mass: 500
+  m_Mass: 100000
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_CenterOfMass: {x: -0.55, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -227,7 +228,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
@@ -254,7 +255,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.12, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.06, y: 0, z: 0}
 --- !u!1 &2556079092715525418
 GameObject:
   m_ObjectHideFlags: 0

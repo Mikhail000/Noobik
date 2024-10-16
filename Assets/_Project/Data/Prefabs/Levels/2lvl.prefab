@@ -4986,6 +4986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: timberLog
       objectReference: {fileID: 0}
+    - target: {fileID: 6658402108417333489, guid: 791e541e14e08c34fb766503fc991b1f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7278713426180549177, guid: 791e541e14e08c34fb766503fc991b1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
