@@ -1,0 +1,5 @@
+AutoTranslateLangs v1.0
+EnvirData v1.001
+InterstitialAdv v1.0
+Localization v1.0
+Storage v1.0

@@ -20,7 +20,7 @@ public class BootstrapInstaller : MonoInstaller
 
     private void BindYandexGame()
     {
-        YandexGame yandexGame = Container.InstantiatePrefabForComponent<YandexGame>(yandexGamePrefab);
-        Container.Bind<YandexGame>().FromInstance(yandexGame).AsSingle().NonLazy();
+        //YandexGame yandexGame = Container.InstantiatePrefabForComponent<YandexGame>(yandexGamePrefab);
+        //Container.Bind<YandexGame>().FromInstance(yandexGame).AsSingle().NonLazy();
     }
 }

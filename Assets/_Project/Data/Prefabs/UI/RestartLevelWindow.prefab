@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5188060348302647578}
   - component: {fileID: 4702573420244276523}
   - component: {fileID: 8724713514369028158}
-  - component: {fileID: 1779315616972714564}
+  - component: {fileID: 3540703469957994669}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DU HAST VERLOREN
+  m_text: "\u0412\u042B \u041F\u0420\u041E\u0418\u0413\u0420\u0410\u041B\u0418"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1779315616972714564
+--- !u!114 &3540703469957994669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,13 +152,128 @@ MonoBehaviour:
   textMPComponent: {fileID: 8724713514369028158}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
-  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
-  text: 
+  info:
+    domainAutoLocalization: com
+    languages:
+      ru: 1
+      en: 1
+      tr: 1
+      az: 0
+      be: 0
+      he: 0
+      hy: 0
+      ka: 0
+      et: 0
+      fr: 0
+      kk: 0
+      ky: 0
+      lt: 0
+      lv: 0
+      ro: 0
+      tg: 0
+      tk: 0
+      uk: 0
+      uz: 0
+      es: 0
+      pt: 0
+      ar: 0
+      id: 0
+      ja: 0
+      it: 0
+      de: 0
+      hi: 0
+    fonts:
+      defaultFont: []
+      ru: []
+      en: []
+      tr: []
+      az: []
+      be: []
+      he: []
+      hy: []
+      ka: []
+      et: []
+      fr: []
+      kk: []
+      ky: []
+      lt: []
+      lv: []
+      ro: []
+      tg: []
+      tk: []
+      uk: []
+      uz: []
+      es: []
+      pt: []
+      ar: []
+      id: []
+      ja: []
+      it: []
+      de: []
+      hi: []
+    fontsTMP:
+      defaultFont: []
+      ru: []
+      en: []
+      tr: []
+      az: []
+      be: []
+      he: []
+      hy: []
+      ka: []
+      et: []
+      fr: []
+      kk: []
+      ky: []
+      lt: []
+      lv: []
+      ro: []
+      tg: []
+      tk: []
+      uk: []
+      uz: []
+      es: []
+      pt: []
+      ar: []
+      id: []
+      ja: []
+      it: []
+      de: []
+      hi: []
+    fontsSizeCorrect:
+      ru: 
+      en: 
+      tr: 
+      az: 
+      be: 
+      he: 
+      hy: 
+      ka: 
+      et: 
+      fr: 
+      kk: 
+      ky: 
+      lt: 
+      lv: 
+      ro: 
+      tg: 
+      tk: 
+      uk: 
+      uz: 
+      es: 
+      pt: 
+      ar: 
+      id: 
+      ja: 
+      it: 
+      de: 
+      hi: 
+  text: "\u0412\u042B \u041F\u0420\u041E\u0418\u0413\u0420\u0410\u041B\u0418"
   ru: "\u0412\u042B \u041F\u0420\u041E\u0418\u0413\u0420\u0410\u041B\u0418"
   en: YOU LOSE
   tr: "KAYBETT\u0130N"
   az: "S\u018FN \u0130T\u0130RD\u0130N"
-  be: 
+  be: "\u0412\u042B \u041F\u0420\u0410\u0419\u0413\u0420\u0410\u041B\u0406"
   he: 
   hy: 
   ka: 
@@ -169,11 +284,11 @@ MonoBehaviour:
   lt: 
   lv: 
   ro: 
-  tg: 
+  tg: "\u0428\u0423\u041C\u041E \u0413\u0423\u041C \u041C\u0415\u041A\u0423\u041D\u0415\u0414"
   tk: 
   uk: 
   uz: SIZ YO'G'OLING
-  es: TU PIERDES
+  es: 
   pt: 
   ar: 
   id: 
@@ -186,9 +301,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 9/9 completed
-  componentTextField: 1
-  countLang: 9
+  processTranslateLabel: 10/10 completed
+  componentTextField: 0
+  countLang: 10
 --- !u!1 &2404497892843927626
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +537,7 @@ GameObject:
   - component: {fileID: 2617525118985384046}
   - component: {fileID: 3575063245431627998}
   - component: {fileID: 4027812724973872775}
-  - component: {fileID: 1051117115496950992}
+  - component: {fileID: 3732811649327044629}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -548,7 +663,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1051117115496950992
+--- !u!114 &3732811649327044629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -563,13 +678,128 @@ MonoBehaviour:
   textMPComponent: {fileID: 4027812724973872775}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
-  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
-  text: 
+  info:
+    domainAutoLocalization: com
+    languages:
+      ru: 1
+      en: 1
+      tr: 1
+      az: 0
+      be: 0
+      he: 0
+      hy: 0
+      ka: 0
+      et: 0
+      fr: 0
+      kk: 0
+      ky: 0
+      lt: 0
+      lv: 0
+      ro: 0
+      tg: 0
+      tk: 0
+      uk: 0
+      uz: 0
+      es: 0
+      pt: 0
+      ar: 0
+      id: 0
+      ja: 0
+      it: 0
+      de: 0
+      hi: 0
+    fonts:
+      defaultFont: []
+      ru: []
+      en: []
+      tr: []
+      az: []
+      be: []
+      he: []
+      hy: []
+      ka: []
+      et: []
+      fr: []
+      kk: []
+      ky: []
+      lt: []
+      lv: []
+      ro: []
+      tg: []
+      tk: []
+      uk: []
+      uz: []
+      es: []
+      pt: []
+      ar: []
+      id: []
+      ja: []
+      it: []
+      de: []
+      hi: []
+    fontsTMP:
+      defaultFont: []
+      ru: []
+      en: []
+      tr: []
+      az: []
+      be: []
+      he: []
+      hy: []
+      ka: []
+      et: []
+      fr: []
+      kk: []
+      ky: []
+      lt: []
+      lv: []
+      ro: []
+      tg: []
+      tk: []
+      uk: []
+      uz: []
+      es: []
+      pt: []
+      ar: []
+      id: []
+      ja: []
+      it: []
+      de: []
+      hi: []
+    fontsSizeCorrect:
+      ru: 
+      en: 
+      tr: 
+      az: 
+      be: 
+      he: 
+      hy: 
+      ka: 
+      et: 
+      fr: 
+      kk: 
+      ky: 
+      lt: 
+      lv: 
+      ro: 
+      tg: 
+      tk: 
+      uk: 
+      uz: 
+      es: 
+      pt: 
+      ar: 
+      id: 
+      ja: 
+      it: 
+      de: 
+      hi: 
+  text: "\u0417\u0410\u041D\u041E\u0412\u041E"
   ru: "\u0417\u0410\u041D\u041E\u0412\u041E"
   en: AGAIN
   tr: TEKRAR
   az: "YEN\u018F"
-  be: 
+  be: "\u0417\u041D\u0410\u0412\u0410"
   he: 
   hy: 
   ka: 
@@ -580,11 +810,11 @@ MonoBehaviour:
   lt: 
   lv: 
   ro: 
-  tg: 
+  tg: "\u0411\u041E\u0417"
   tk: 
   uk: 
   uz: YANA
-  es: DE NUEVO
+  es: 
   pt: 
   ar: 
   id: 
@@ -597,9 +827,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 9/9 completed
-  componentTextField: 1
-  countLang: 9
+  processTranslateLabel: 10/10 completed
+  componentTextField: 0
+  countLang: 10
 --- !u!1 &8354454528380795692
 GameObject:
   m_ObjectHideFlags: 0

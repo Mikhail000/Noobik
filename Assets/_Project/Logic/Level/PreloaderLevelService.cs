@@ -19,12 +19,12 @@ public class PreloaderLevelService
 
     public void LoadSaveCloud()
     {
-        Levels = YandexGame.savesData.openLevels;
+        Levels = YG2.saves.openLevels;
     }
 
     public void SaveAndLoadNextLevel()
     {
-        YandexGame.savesData.openLevels[_currentLevelNumb] = true;
+        YG2.saves.openLevels[_currentLevelNumb] = true;
 
         _currentLevelNumb++;
 

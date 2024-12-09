@@ -17,14 +17,14 @@ namespace _Project.Logic.Menu
 
         public void UpdateWidgets()
         {
-            if (YandexGame.savesData.openLevels.Length != widgets.Count)
+            if (YG2.saves.openLevels.Length != widgets.Count)
             {
                 throw new ArgumentException("The lengths of openLevels and levels arrays must be the same.");
             }
             
-            for (int i = 0; i < YandexGame.savesData.openLevels.Length; i++)
+            for (int i = 0; i < YG2.saves.openLevels.Length; i++)
             {
-                if (YandexGame.savesData.openLevels[i])
+                if (YG2.saves.openLevels[i])
                 {
                     widgets[i].UpdateWidgetState(true);
                 }

@@ -86,13 +86,13 @@ public class LevelEntity : MonoBehaviour
 
     private void RestartLevel(RestartEvent restartEvent)
     {
-        YandexGame.FullscreenShow();
+        YG2.InterstitialAdvShow();
         _player.SetPosition(_lastPassedCheckpoint.position);
     }
 
     private void LoadNextLevel(LaunchNextLevelEvent launchNextLevelEvent)
     {
-        YandexGame.FullscreenShow();
+        YG2.InterstitialAdvShow();
         _preloaderService.SaveAndLoadNextLevel();
     }
 

@@ -210,7 +210,7 @@ MonoBehaviour:
   rearTransform: {fileID: 2824248867176572373}
   tiltPivot: {fileID: 8845303187065494236}
   directionAlignment: 0
-  acceleration: 25
+  acceleration: 35
   breakingForce: 35
   turnSpeed: 10
   tiltAngle: 30
@@ -236,25 +236,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 5
+  _height: 4.95
   _playTime: {fileID: 5194092553564640943}
 --- !u!114 &9221325408240101182
 MonoBehaviour:
@@ -271,8 +271,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 3660277237366515239}
   _surfaceSlider: {fileID: 8941137310736868006}
   _fx: {fileID: 5078256574354713483}
-  _length: 0.4
-  _duration: 0.05
+  _length: 0.2
+  _duration: 0.02
   _jumpForce: 0
 --- !u!114 &8941137310736868006
 MonoBehaviour:
@@ -286,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf96a5f6f8fb8da498069cb5dcbf1673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastOrigin: {fileID: 1665198817890740194}
+  raycastDistance: 0.55
 --- !u!114 &4093648100402196799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,7 +347,7 @@ MonoBehaviour:
   _fx: {fileID: 4336393364152332475}
   _length: 1
   _duration: 5
-  _jumpForce: 300
+  _jumpForce: 220
 --- !u!114 &4336393364152332475
 MonoBehaviour:
   m_ObjectHideFlags: 0
