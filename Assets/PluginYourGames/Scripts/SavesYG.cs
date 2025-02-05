@@ -1,9 +1,11 @@
 ﻿
+using System.Diagnostics;
+
 namespace YG
 {
     public partial class SavesYG
     {
-        public bool[] openLevels = new bool[10];
+        public bool[] openLevels = new bool[30];
 
 
         // Ваши сохранения

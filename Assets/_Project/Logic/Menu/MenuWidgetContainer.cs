@@ -17,6 +17,9 @@ namespace _Project.Logic.Menu
 
         public void UpdateWidgets()
         {
+            Debug.Log(YG2.saves.openLevels.Length);
+            Debug.Log(widgets.Count);
+
             if (YG2.saves.openLevels.Length != widgets.Count)
             {
                 throw new ArgumentException("The lengths of openLevels and levels arrays must be the same.");
