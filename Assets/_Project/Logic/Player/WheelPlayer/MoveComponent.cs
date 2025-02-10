@@ -215,6 +215,32 @@ public class MoveComponent : MonoBehaviour
 
     private void Tilt()
     {
+        /* // Проверка, если мы двигаемся только вперед или назад (по оси Z)
+        if (Mathf.Abs(_targetMoveDirection.x) == 0 && Mathf.Abs(_targetMoveDirection.z) > 0)
+        {
+            // Возвращаем наклон в исходное положение, если движение строго по оси Z
+            ResetTilt();
+            return;
+        }
+
+        // Рассчитываем угол наклона в зависимости от движения
+        float targetTiltAngle;
+
+        if (_targetMoveDirection.z < 0)
+        {
+            targetTiltAngle = _currentMoveDirection.x * tiltAngle;
+        }
+        else
+        {
+            targetTiltAngle = -_currentMoveDirection.x * tiltAngle;
+        }
+
+        // Плавно изменяем наклон в зависимости от направления
+        Quaternion targetTiltRotation = Quaternion.Euler(tiltPivot.localRotation.eulerAngles.x,
+            tiltPivot.localRotation.eulerAngles.y, targetTiltAngle);
+
+        tiltPivot.localRotation = Quaternion.Slerp(tiltPivot.localRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);*/
+
         if (Mathf.Abs(_targetMoveDirection.x) > 0 && Mathf.Abs(_targetMoveDirection.z) == 0)
         {
             return;
