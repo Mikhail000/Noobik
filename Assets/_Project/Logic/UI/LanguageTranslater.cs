@@ -11,16 +11,16 @@ public class LanguageTranslater : MonoBehaviour
     private void Awake()
     {
         textComponent = GetComponent<Text>();
-        SwitchLanguage(YG2.lang);
+        //SwitchLanguage(YG2.lang);
     }
 
     private void OnEnable()
     {
-        YG2.onSwitchLang += SwitchLanguage;
+        //YG2.onSwitchLang += SwitchLanguage;
     }
     private void OnDisable()
     {
-        YG2.onSwitchLang -= SwitchLanguage;
+        //YG2.onSwitchLang -= SwitchLanguage;
     }
 
     public void SwitchLanguage(string lang)

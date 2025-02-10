@@ -17,7 +17,7 @@ namespace _Project.Logic.Menu
 
         public void UpdateWidgets()
         {
-            Debug.Log(YG2.saves.openLevels.Length);
+            /*Debug.Log(YG2.saves.openLevels.Length);
             Debug.Log(widgets.Count);
 
             if (YG2.saves.openLevels.Length != widgets.Count)
@@ -35,7 +35,7 @@ namespace _Project.Logic.Menu
                 {
                     widgets[i].UpdateWidgetState(false);
                 }
-            }
+            }*/
             
         }
     }

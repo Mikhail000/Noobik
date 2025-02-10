@@ -86,13 +86,13 @@ public class LevelEntity : MonoBehaviour
 
     private void RestartLevel(RestartEvent restartEvent)
     {
-        YG2.InterstitialAdvShow();
+        //YG2.InterstitialAdvShow();
         _player.SetPosition(_lastPassedCheckpoint.position);
     }
 
     private void LoadNextLevel(LaunchNextLevelEvent launchNextLevelEvent)
     {
-        YG2.InterstitialAdvShow();
+        //YG2.InterstitialAdvShow();
         _preloaderService.SaveAndLoadNextLevel();
     }
 

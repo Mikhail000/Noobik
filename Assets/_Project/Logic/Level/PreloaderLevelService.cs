@@ -19,12 +19,12 @@ public class PreloaderLevelService
 
     public void LoadSaveCloud()
     {
-        Levels = YG2.saves.openLevels;
+        //Levels = YG2.saves.openLevels;
     }
 
     public void SaveAndLoadNextLevel()
     {
-        YG2.saves.openLevels[_currentLevelNumb] = true;
+        //YG2.saves.openLevels[_currentLevelNumb] = true;
 
         _currentLevelNumb++;
 

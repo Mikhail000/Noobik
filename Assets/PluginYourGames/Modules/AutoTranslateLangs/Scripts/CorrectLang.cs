@@ -7,10 +7,10 @@ namespace YG.LanguageLegacy
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Init()
         {
-            YG2.onCorrectLang += On—hangeLang;
+            YG2.onCorrectLang += OnhangeLang;
         }
 
-        public static void On—hangeLang(string lang)
+        public static void OnhangeLang(string lang)
         {
             if (UtilsLang.LangCheckExist(lang) == false)
             {
